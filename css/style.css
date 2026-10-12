@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+    color: #F2F2F2;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+}
