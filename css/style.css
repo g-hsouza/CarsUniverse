@@ -292,6 +292,7 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     gap: 150px;
+    margin-bottom: 100px;
 }
 
 .texto-sobre {
@@ -311,4 +312,33 @@ nav a:hover {
 
 .img-sobre {
     border-radius: 50%;
+}
+
+footer {
+    background-color: #1C1D21;
+    padding: 20px;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer p {
+    font-size: 10px;
+    color: #c8d1d9;
+    margin: 0;
+}
+
+.h1-footer {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    color: #c8d1d9;
+}
+
+.footer-icones{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    cursor: pointer;
 }
