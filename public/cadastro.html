@@ -12,6 +12,36 @@
     <link rel="stylesheet" href="../css/styleLogin.css">
 </head>
 <body>
+    <div class="formulario">
+        <h1>Crie sua <span style="color: #E82127;">conta</span></h1>
+
+        <div class="campos-formulario">
+            <div class="campo">
+                <label for="ipt_nome">Nome</label>
+                <input type="text" id="ipt_nome" placeholder="Nome">
+            </div>
+            
+            <div class="campo">
+                <label for="ipt_email">E-mail</label>
+                <input type="text" id="ipt_email" placeholder="nome@email.com">
+            </div>
+
+            <div class="campo">
+                <label for="ipt_senha">Senha</label>
+                <input type="password" id="ipt_senha" placeholder="Digite sua senha">
+                <p class="p-senha">X 8+ caracteres | X Letra maiúscula | X Letra minúscula | X Caractere especial</p>
+            </div>
+
+            <div class="campo">
+                <label for="ipt_confirmacaoSenha">Confirmar senha</label>
+                <input type="text" id="ipt_confirmacaoSenha" placeholder="Confirme a senha">
+            </div>
+        </div>
+
+        <button onclick="cadastrar()">Cadastrar</button>
+
+        <p class="p-login">Já tem uma conta? <a href="" style="color: #E82127;"><b>Entrar</b></a></p>
+    </div>
     
 </body>
 </html>
