@@ -146,6 +146,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 .h1-personagens {
@@ -158,3 +159,39 @@ img {
     height: 1px;
     background-color: #F5C542;
 }
+
+.personagem {
+    flex: 0 0 250px;;
+    height: 250px;
+    border: solid 1px #8B929B;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-evenly;
+    align-items: center;
+    color: #8B929B;
+}
+
+.personagem:hover {
+    border-color: #E82127;
+}
+
+.carrossel-personagens {
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 50px;
+    margin: 0 50px 0 50px;
+}
+
+.container-carrossel-personagens {
+    display: flex;
+    gap: 50px;
+    overflow-x: scroll;
+}
+
+.container-carrossel-personagens::-webkit-scrollbar {
+    display: none; 
+}
+
+
