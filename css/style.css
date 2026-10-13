@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: black;
     color: #F2F2F2;
@@ -9,6 +13,10 @@ h1, h2, h3, h4, h5 {
     font-family: 'Bebas Neue', sans-serif;
     font-weight: 550;
     font-style: normal;
+}
+
+.img-logo{
+    cursor: pointer;
 }
 
 header {
@@ -48,7 +56,6 @@ nav a:hover {
 }
 
 .hero {
-    margin-top: 80px;
     background-image: linear-gradient(to bottom, transparent 80%, black 100%), url(../imgs/img_hero.png);
     background-size: cover;
     background-position: center;
@@ -64,7 +71,7 @@ nav a:hover {
 }
 
 .h1-hero {
-    margin-top: 100px;
+    margin-top: 60px;
     font-size: 80px;
     margin-bottom: 0;
     line-height: 1.2;
@@ -83,6 +90,10 @@ nav a:hover {
     text-align: center;
     font-size: 60px;
     margin-bottom: 60px;
+}
+
+.universo img {
+    border-radius: 8px;
 }
 
 .conteudo-universo {
