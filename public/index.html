@@ -68,6 +68,7 @@
         </div>
 
         <div class="carrossel-personagens">
+            <button class="btn-voltar"><img src="../imgs/arrow.png" alt=""></button>
 
             <div class="container-carrossel-personagens">
                 <div class="personagem">
@@ -130,7 +131,9 @@
                     <p>Jackson Storm</p>
                 </div>
 
+                
             </div>
+            <button class="btn-avancar"><img src="../imgs/arrow.png" alt=""></button>
 
         </div>
 
@@ -140,3 +143,19 @@
     
 </body>
 </html>
+
+<script>
+
+let carrossel = document.querySelector(".container-carrossel-personagens");
+let btnVoltar = document.querySelector(".btn-voltar");
+let btnAvancar = document.querySelector(".btn-avancar");
+
+btnVoltar.onclick = function() {
+    carrossel.scrollBy({ left: -300, behavior: "smooth" });
+};
+
+btnAvancar.onclick = function() {
+    carrossel.scrollBy({ left: 300, behavior: "smooth" });
+};
+
+</script>

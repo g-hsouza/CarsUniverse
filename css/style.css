@@ -172,6 +172,35 @@ img {
     color: #8B929B;
 }
 
+.btn-voltar{
+    flex: 0 0 30px;
+    height: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transform: rotate(180deg);
+    padding: 0;
+}
+
+.btn-avancar {
+    flex: 0 0 30px;
+    height: 50px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-voltar img {
+    width: 100%;
+    height: 100%;
+}
+
+.btn-avancar img {
+    width: 100%;
+    height: 100%;
+}
+
 .personagem:hover {
     border-color: #E82127;
 }
@@ -181,13 +210,16 @@ img {
     align-items: center;
     position: relative;
     gap: 50px;
-    margin: 0 50px 0 50px;
+    margin: 0 50px ;
 }
 
 .container-carrossel-personagens {
     display: flex;
     gap: 50px;
     overflow-x: scroll;
+    scroll-behavior: smooth;
+    flex: 1;
+    min-width: 0;
 }
 
 .container-carrossel-personagens::-webkit-scrollbar {
