@@ -362,3 +362,31 @@ footer p {
     gap: 50px;
     cursor: pointer;
 }
+
+.descricao-personagem {
+    border: solid 1px #8B929B;
+    border-radius: 5px;
+    width: 600px;
+    padding: 25px;
+}
+
+.descricao-personagem {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.descricao-personagem h1 {
+    text-align: center;
+}
+
+.detalhamento-personagem {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img-personagem img {
+    width: 450px;
+    height: 300px;
+}
