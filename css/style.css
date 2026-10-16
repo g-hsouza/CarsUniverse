@@ -15,6 +15,10 @@ h1, h2, h3, h4, h5 {
     font-style: normal;
 }
 
+a {
+    text-decoration: none;
+}
+
 .img-logo{
     cursor: pointer;
 }
@@ -189,6 +193,7 @@ nav a:hover {
     align-items: center;
     color: #8B929B;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .btn-voltar{
@@ -240,6 +245,13 @@ nav a:hover {
     flex: 1;
     min-width: 0;
 }
+
+.container-carrossel-personagens a {
+    display: block;
+    flex: 0 0 270px;
+    text-decoration: none;
+}
+
 
 .container-carrossel-personagens::-webkit-scrollbar {
     display: none; 
