@@ -34,7 +34,7 @@
 
             <div class="campo">
                 <label for="ipt_confirmacaoSenha">Confirmar senha</label>
-                <input type="text" id="ipt_confirmacaoSenha" placeholder="Confirme a senha">
+                <input type="password" id="ipt_confirmacaoSenha" placeholder="Confirme a senha">
             </div>
             <div id="div_nulos"></div>
         </div>
@@ -60,7 +60,26 @@
         let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
         let confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
 
-        if (nome == "" || email == "" || senha == "" || confirmacaoSenha == ""){
+        let nomeValido = nome.length > 1;
+        let emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0;
+        let senhaValida = senha.length >= 8 && senha != senhaUpper && senha != senhaLower && temEspecial;
+        let confirmacaoSenhaValida = confirmacaoSenha == senha;
+
+        if (nome != "" || email != "" || senha != "" || confirmacaoSenha != ""){
+
+            if (!nomeValido){
+                alert('O nome não é válido.')
+            } else if (!emailValido){
+                alert('O e-mail não é válido.')
+            } else if (!senhaValida){
+                alert('A senha não é valida')
+            } else if (!confirmacaoSenhaValida){
+                alert('As senhas não coincidem.')
+            } else {
+                alert('Cadastro realizado com sucesso!')
+            }
+
+        } else {
             div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
         }
 
