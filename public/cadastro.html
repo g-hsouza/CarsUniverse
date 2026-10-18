@@ -36,12 +36,33 @@
                 <label for="ipt_confirmacaoSenha">Confirmar senha</label>
                 <input type="text" id="ipt_confirmacaoSenha" placeholder="Confirme a senha">
             </div>
+            <div id="div_nulos"></div>
         </div>
-
-        <button onclick="cadastrar()">Cadastrar</button>
+        
+        <button class="button-cadastro" onclick="cadastrar()">Cadastrar</button>
 
         <p class="p-login">Já tem uma conta? <a href="login.html" style="color: #E82127;"><b>Entrar</b></a></p>
     </div>
     
 </body>
 </html>
+<script>
+    function cadastrar(){
+        let nome = ipt_nome.value.trim();
+        let email = ipt_email.value.trim();
+        let temArroba = email.includes('@');
+        let temPonto = email.includes('.');
+        let indexArroba = email.indexOf('@');
+        let indexPontoCom = email.indexOf('.com');
+        let senha = ipt_senha.value.trim();
+        let senhaUpper = senha.toUpperCase();
+        let senhaLower = senha.toLowerCase();
+        let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
+        let confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
+
+        if (nome == "" || email == "" || senha == "" || confirmacaoSenha == ""){
+            div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+        }
+
+    }
+</script>
