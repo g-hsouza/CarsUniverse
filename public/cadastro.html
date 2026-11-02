@@ -28,8 +28,8 @@
 
             <div class="campo">
                 <label for="ipt_senha">Senha</label>
-                <input type="password" id="ipt_senha" placeholder="Digite sua senha">
-                <p class="p-senha">X 8+ caracteres | X Letra maiúscula | X Letra minúscula | X Caractere especial</p>
+                <input type="password" id="ipt_senha" onkeyup="mostrarSenha()" placeholder="Digite sua senha">
+                <p class="p-senha"><span id="senha_8caracteres">✗ 8+ caracteres</span> | <span id="senha_maiuscula">✗ Letra maiúscula</span> | <span id="senha_minuscula">✗ Letra minúscula</span> | <span id="senha_especial">✗ Caractere especial</span></p>
             </div>
 
             <div class="campo">
@@ -60,14 +60,22 @@
         let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
         let confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
 
+        let campos = [nome, email, senha, confirmacaoSenha]
+        let i = 0;
+
         let nomeValido = nome.length > 1;
         let emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0;
         let senhaValida = senha.length >= 8 && senha != senhaUpper && senha != senhaLower && temEspecial;
         let confirmacaoSenhaValida = confirmacaoSenha == senha;
 
-        if (nome != "" || email != "" || senha != "" || confirmacaoSenha != ""){
+        for (i = 0; i < campos.length && campos[i] != ''; i++){
 
-            if (!nomeValido){
+        }
+
+        if (i < campos.length){
+            div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+        } else {
+             if (!nomeValido){
                 alert('O nome não é válido.')
             } else if (!emailValido){
                 alert('O e-mail não é válido.')
@@ -78,10 +86,39 @@
             } else {
                 alert('Cadastro realizado com sucesso!')
             }
-
-        } else {
-            div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
         }
+    }
+
+    function mostrarSenha(){
+        let senha = ipt_senha.value.trim();
+        let senhaUpper = senha.toUpperCase();
+        let senhaLower = senha.toLowerCase();
+        let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
+
+        if (temEspecial){
+            senha_especial.innerHTML = `<span style="color: #2E9B68;">✓ Caractere especial</span>`
+        } else {
+            senha_especial.innerHTML = `<span style="color: #8B929B;">✗ Caractere especial</span>`
+        }
+
+        if (senha != senhaUpper){
+            senha_minuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra minúscula</span>`
+        } else {
+            senha_minuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra minúscula</span>`
+        }
+
+        if (senha != senhaLower){
+            senha_maiuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra maiúscula</span>`
+        } else {
+            senha_maiuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra maiúscula</span>`
+        }
+
+        if (senha.length >= 8){
+            senha_8caracteres.innerHTML = `<span style="color: #2E9B68;">✓ 8+ caracteres</span>`
+        } else {
+            senha_8caracteres.innerHTML = `<span style="color: #8B929B;">✗ 8+ caracteres</span>`
+        }
+
 
     }
 </script>
