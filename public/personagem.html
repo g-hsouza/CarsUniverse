@@ -34,20 +34,20 @@
         </div>
 
         <div class="descricao-personagem">
-            <h1>Relâmpago Mcqueen</h1>
+            <h1></h1>
 
             <div class="detalhes-personagem">
                 <h2>Descrição</h2>
-                <p>Relâmpago McQueen é um carro de corrida talentoso, confiante e competitivo. Ao longo de sua jornada, aprende que a amizade, a humildade e o trabalho em equipe são tão importantes quanto cruzar a linha de chegada em primeiro lugar.</p><br>
+                <p></p><br>
 
                 <h2>Modelo</h2>
-                <p>Chevrolet Corvette C6</p><br>
+                <p></p><br>
 
                 <h2>Primeira aparição</h2>
-                <p>Carros 1</p><br>
+                <p></p><br>
 
                 <h2>Personalidade</h2>
-                <p>Competitivo, confiante, determinado e carismático</p>
+                <p></p>
 
             </div>
         </div>
@@ -72,6 +72,64 @@
 
         <p>© 2026 Cars Universe. Projeto de fã, sem vínculo oficial com a Disney/Pixar.</p>
     </footer>
-    
+
+    <script src="personagens.js"></script>
+    <script>
+    // Preenche a página com os dados do personagem selecionado via query string
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        const rawId = params.get('personagem') || 'mcqueen';
+
+        if (typeof personagens === 'undefined') {
+            console.warn('Objeto personagens não encontrado');
+            return;
+        }
+
+        // Tenta encontrar a chave correspondendo ignorando maiúsculas/minúsculas
+        const keys = Object.keys(personagens);
+        const matchKey = keys.find(k => k.toLowerCase() === rawId.toLowerCase())
+            // fallback: compara com o nome legível
+            || keys.find(k => (personagens[k].nome || '').toLowerCase() === rawId.toLowerCase());
+
+        if (!matchKey) {
+            console.warn('Personagem não encontrado:', rawId);
+            return;
+        }
+
+        const p = personagens[matchKey];
+
+        // Ajuste do caminho da imagem: usa a pasta ../imgs/personangens/
+        const imgEl = document.querySelector('.img-personagem img');
+        if (imgEl) {
+            const filename = (p.imagem || '').split('/').pop();
+            imgEl.src = filename ? `../imgs/personangens/${filename}` : p.imagem;
+            imgEl.alt = p.nome || '';
+        }
+
+        const title = document.querySelector('.descricao-personagem h1');
+        if (title) title.textContent = p.nome || '';
+
+        // Preenche os parágrafos na ordem: descrição, modelo, filme, personalidade
+        const detalhes = document.querySelectorAll('.detalhes-personagem p');
+        if (detalhes && detalhes.length >= 4) {
+            detalhes[0].textContent = p.descricao || '';
+            detalhes[1].textContent = p.modelo || '';
+            detalhes[2].textContent = p.filme || '';
+            detalhes[3].textContent = p.personalidade || '';
+        } else {
+            // fallback: procura os h2 e usa o nextElementSibling
+            document.querySelectorAll('.detalhes-personagem h2').forEach(h => {
+                const key = h.textContent.trim().toLowerCase();
+                const target = h.nextElementSibling;
+                if (!target) return;
+                if (key.startsWith('descr')) target.textContent = p.descricao || '';
+                else if (key.startsWith('modelo')) target.textContent = p.modelo || '';
+                else if (key.includes('apari')) target.textContent = p.filme || '';
+                else if (key.includes('personal')) target.textContent = p.personalidade || '';
+            });
+        }
+    })();
+    </script>
+
 </body>
 </html>
