@@ -11,16 +11,18 @@
   <script src="./js/sessao.js"></script>
 
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/styleLogin.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="./css/styleLogin.css" />
-  <link rel="icon" href="./assets/icon/favicon2.ico" />
 </head>
 
-<body onload="listar()">
+<body>
 
   <div class="formulario">
     <h1>Crie sua <span style="color: #E82127;">conta</span></h1>
@@ -63,185 +65,155 @@
 
 <script>
 
-   function cadastrar(){
-        let nome = ipt_nome.value.trim();
-        let email = ipt_email.value.trim();
-        let temArroba = email.includes('@');
-        let temPonto = email.includes('.');
-        let indexArroba = email.indexOf('@');
-        let indexPontoCom = email.indexOf('.com');
-        let senha = ipt_senha.value.trim();
-        let senhaUpper = senha.toUpperCase();
-        let senhaLower = senha.toLowerCase();
-        let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
-        let confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
-
-        let campos = [nome, email, senha, confirmacaoSenha]
-        let i = 0;
-
-        let nomeValido = nome.length > 1;
-        let emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0;
-        let senhaValida = senha.length >= 8 && senha != senhaUpper && senha != senhaLower && temEspecial;
-        let confirmacaoSenhaValida = confirmacaoSenha == senha;
-
-        for (i = 0; i < campos.length && campos[i] != ''; i++){
-
-        }
-
-        if (i < campos.length){
-            div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
-        } else {
-             if (!nomeValido){
-                alert('O nome não é válido.')
-            } else if (!emailValido){
-                alert('O e-mail não é válido.')
-            } else if (!senhaValida){
-                alert('A senha não é valida')
-            } else if (!confirmacaoSenhaValida){
-                alert('As senhas não coincidem.')
-            } else {
-                alert('Cadastro realizado com sucesso!')
-            }
-        }
-    }
-
-    function mostrarSenha(){
-        let senha = ipt_senha.value.trim();
-        let senhaUpper = senha.toUpperCase();
-        let senhaLower = senha.toLowerCase();
-        let temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
-
-        if (temEspecial){
-            senha_especial.innerHTML = `<span style="color: #2E9B68;">✓ Caractere especial</span>`
-        } else {
-            senha_especial.innerHTML = `<span style="color: #8B929B;">✗ Caractere especial</span>`
-        }
-
-        if (senha != senhaUpper){
-            senha_minuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra minúscula</span>`
-        } else {
-            senha_minuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra minúscula</span>`
-        }
-
-        if (senha != senhaLower){
-            senha_maiuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra maiúscula</span>`
-        } else {
-            senha_maiuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra maiúscula</span>`
-        }
-
-        if (senha.length >= 8){
-            senha_8caracteres.innerHTML = `<span style="color: #2E9B68;">✓ 8+ caracteres</span>`
-        } else {
-            senha_8caracteres.innerHTML = `<span style="color: #8B929B;">✗ 8+ caracteres</span>`
-        }
-
-
-    }
-
   function cadastrar() {
-    // aguardar();
+    var nome = ipt_nome.value.trim();
+    var email = ipt_email.value.trim();
+    var temArroba = email.includes('@');
+    var temPonto = email.includes('.');
+    var indexArroba = email.indexOf('@');
+    var indexPontoCom = email.indexOf('.com');
+    var senha = ipt_senha.value.trim();
+    var senhaUpper = senha.toUpperCase();
+    var senhaLower = senha.toLowerCase();
+    var temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
+    var confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var campos = [nome, email, senha, confirmacaoSenha]
+    var i = 0;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+    var nomeValido = nome.length > 1;
+    var emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0;
+    var senhaValida = senha.length >= 8 && senha != senhaUpper && senha != senhaLower && temEspecial;
+    var confirmacaoSenhaValida = confirmacaoSenha == senha;
 
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+    for (i = 0; i < campos.length && campos[i] != ''; i++) {
+
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
+    if (i < campos.length) {
+      div_nulos.innerHTML = `<span style="color: red;">Preencha todos os campos!</span>`
+    } else {
+      if (!nomeValido) {
+        alert('O nome não é válido.')
+      } else if (!emailValido) {
+        alert('O e-mail não é válido.')
+      } else if (!senhaValida) {
+        alert('A senha não é valida')
+      } else if (!confirmacaoSenhaValida) {
+        alert('As senhas não coincidem.')
       } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeServer: nome,
+            emailServer: email,
+            senhaServer: senha,
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              // cardErro.style.display = "block";
+
+              alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...")
+
+              // mensagem_erro.innerHTML =
+              //   "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+              setTimeout(() => {
+                window.location = "login.html";
+              }, "2000");
+
+              limparFormulario();
+              finalizarAguardar();
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+
+        return false;
+
+
+
       }
     }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
-
-    return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
+  function mostrarSenha() {
+    var senha = ipt_senha.value.trim();
+    var senhaUpper = senha.toUpperCase();
+    var senhaLower = senha.toLowerCase();
+    var temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
 
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+    if (temEspecial) {
+      senha_especial.innerHTML = `<span style="color: #2E9B68;">✓ Caractere especial</span>`
+    } else {
+      senha_especial.innerHTML = `<span style="color: #8B929B;">✗ Caractere especial</span>`
+    }
+
+    if (senha != senhaUpper) {
+      senha_minuscula.innerHTML = `<span style="color: #2E9B68;">✓ varra minúscula</span>`
+    } else {
+      senha_minuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra minúscula</span>`
+    }
+
+    if (senha != senhaLower) {
+      senha_maiuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra maiúscula</span>`
+    } else {
+      senha_maiuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra maiúscula</span>`
+    }
+
+    if (senha.length >= 8) {
+      senha_8caracteres.innerHTML = `<span style="color: #2E9B68;">✓ 8+ caracteres</span>`
+    } else {
+      senha_8caracteres.innerHTML = `<span style="color: #8B929B;">✗ 8+ caracteres</span>`
+    }
+
+
   }
+
+  // function cadastrar() {
+  //   // aguardar();
+
+  //   //Recupere o valor da nova input pelo nome do id
+  //   // Agora vá para o método fetch logo abaixo
+  //   var nomeVar = nome_input.value;
+  //   var emailVar = email_input.value;
+  //   var senhaVar = senha_input.value;
+  //   var confirmacaoSenhaVar = confirmacao_senha_input.value;
+  //   var codigoVar = codigo_input.value;
+  //   var idEmpresaVincular
+
+  //   // Verificando se há algum campo em branco
+  //   if (
+  //     nomeVar == "" ||
+  //     emailVar == "" ||
+  //     senhaVar == "" ||
+  //     confirmacaoSenhaVar == "" ||
+  //     codigoVar == ""
+  //   ) {
+  //     cardErro.style.display = "block";
+  //     mensagem_erro.innerHTML =
+  //       "(Mensagem de erro para todos os campos em branco)";
+
+  //     finalizarAguardar();
+  //     return false;
+  //   } else {
+  //     setInterval(sumirMensagem, 5000);
+  //   }
+  // }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
