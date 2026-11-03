@@ -60,7 +60,7 @@ nav a:hover {
 }
 
 .hero {
-    background-image: linear-gradient(to bottom, transparent 80%, black 100%), url(../imgs/img_hero.png);
+    background-image: linear-gradient(to bottom, transparent 80%, black 100%), url(../assets/imgs/img_hero.png);
     background-size: cover;
     background-position: center;
     height: 90vh;
