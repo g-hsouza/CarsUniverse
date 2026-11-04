@@ -25,10 +25,12 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body onload="exibirAquarios(),  atualizacaoPeriodica()">
-
+    <!-- validarSessao(), -->
     <div class="janela">
 
         <div class="header-left dash-header">
@@ -87,7 +89,7 @@
 
                 <div class="kpi">
                     <h5>Taxa de acerto atual</h5>
-                    <h1>92,6%</h1>
+                    <h1>78,5%</h1>
                     <h5>Quiz de conhecimento</h5>
                 </div>
 
@@ -103,10 +105,16 @@
             <div class="div-graphs">
                 <div class="graph">
                     <h5>Desempenho por Categoria</h5>
+                    <div>
+                        <canvas id="chartCategorie"></canvas>
+                    </div>
                 </div>
 
                 <div class="graph">
                     <h5>Evolução Taxa de Acerto</h5>
+                    <div>
+                        <canvas id="chartEvolution"></canvas>
+                    </div>
                 </div>
             </div>
 
@@ -117,24 +125,69 @@
 </body>
 
 <script>
+    const chartCategorie = document.getElementById('chartCategorie');
+    const chartEvolution = document.getElementById('chartEvolution');
 
-    function exibirAquarios() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="temperatura">
-                            <p id="temp_aquario_${item.id}">-°C</p>
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
-        });
-    }
+
+    new Chart(chartCategorie, {
+        type: 'bar',
+        data: {
+            labels: ['Personagens', 'Filmes', 'Corridas', 'Lugares'],
+            datasets: [{
+                label: 'Taxa Acerto',
+                data: [92, 85, 78, 65],
+                backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                borderColor: 'rgba(245, 197, 66, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25,
+                        callback: function (value) {
+                            return value + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+    new Chart(chartEvolution, {
+        type: 'line',
+        data: {
+            labels: ['1ª', '2ª', '3ª', '4ª', '5ª'],
+            datasets: [{
+                label: 'Taxa Acerto',
+                data: [68, 72.5, 75, 82, 95],
+                backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                borderColor: 'rgba(245, 197, 66, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    min: 0,
+                    max: 100,
+                    ticks: {
+                        stepSize: 25,
+                        callback: function (value) {
+                            return value + '%';
+                        }
+                    }
+                }
+            }
+        }
+    });
+
+
 
 </script>
 
