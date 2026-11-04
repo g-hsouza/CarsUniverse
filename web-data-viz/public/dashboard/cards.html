@@ -15,8 +15,12 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -35,21 +39,21 @@
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div> -->
             <div class="botoes-nav">
-            <div class="btn-nav">
-                <h3>Dashboard</h3>
-            </div>
+                <div class="btn-nav">
+                    <h3>Dashboard</h3>
+                </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Quiz</h3>
-                </a>
-            </div>
+                <div class="btn-nav-white">
+                    <a href="./dashboard.html">
+                        <h3>Quiz</h3>
+                    </a>
+                </div>
 
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Perfil</h3>
-                </a>
-            </div>
+                <div class="btn-nav-white">
+                    <a href="./mural.html">
+                        <h3>Perfil</h3>
+                    </a>
+                </div>
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -59,38 +63,51 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
-            <div class="area-parametros-alerta">
-                <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
-                </p>
-                <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
-                        <p>Perigo</p>
-                        <p>&lt;=5°C</p>
-                    </div>
-                    <div class="item-regua alerta-frio">
-                        <p>Alerta</p>
-                        <p>&lt;=10°C</p>
-                    </div>
-                    <div class="item-regua ideal">
-                        <p>Ideal</p>
-                        <p>20°C</p>
-                    </div>
-                    <div class="item-regua alerta-quente">
-                        <p>Alerta</p>
-                        <p>&gt;=22°C</p>
-                    </div>
-                    <div class="item-regua perigo-quente">
-                        <p>Perigo</p>
-                        <p>&gt;=23°C</p>
-                    </div>
+
+            <div class="topo-dash">
+                <div class="titulo-dash">
+                    <h1>DASHBOARD</h1>
+                    <p>Olá, <span id="b_usuario">usuário</span>!</p>
+                </div>
+
+                <div class="icon-perfil">
+                    <a href="">
+                        <img src="../assets/imgs/icone.png" alt="" width="50px" height="50px">
+                    </a>
                 </div>
             </div>
 
-            <div class="cards" id="cardAquarios">
+            <div class="div-kpis">
 
+                <div class="kpi kpi-red">
+                    <h5>Total de quizzes realizados</h5>
+                    <h1>5</h1>
+                    <h5>Conhecimento + Personalidade</h5>
+                </div>
+
+                <div class="kpi">
+                    <h5>Taxa de acerto atual</h5>
+                    <h1>92,6%</h1>
+                    <h5>Quiz de conhecimento</h5>
+                </div>
+
+                <div class="kpi">
+                    <h5>Seu personagem</h5>
+                    <h1 class="h1-personagem">McQueen</h1>
+                    <h5>Último resultado de personalidade</h5>
+                </div>
+
+
+            </div>
+
+            <div class="div-graphs">
+                <div class="graph">
+                    <h5>Desempenho por Categoria</h5>
+                </div>
+
+                <div class="graph">
+                    <h5>Evolução Taxa de Acerto</h5>
+                </div>
             </div>
 
         </div>
