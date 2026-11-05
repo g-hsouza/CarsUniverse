@@ -269,13 +269,13 @@ body {
   flex-direction: column;
 }
 
-input {
+/* input {
   margin-bottom: 10px;
   border: 2px solid #32b9cd;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
-}
+} */
 
 .btn {
   font-family: "Barlow", sans-serif;

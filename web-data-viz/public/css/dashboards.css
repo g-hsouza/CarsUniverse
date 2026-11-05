@@ -213,6 +213,259 @@ h1, h2, h3 {
   font-weight: normal;
 }
 
+.quizzes {
+  display: flex;
+  flex-direction: row;
+  margin: 80px 30px 50px 0;
+  justify-content: space-evenly;
+}
+
+.card-quiz {
+  width: 450px;
+  height: 300px;
+  padding: 20px;
+  background-color: none;
+  border: solid 1px #8B929B;
+  border-radius: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
+}
+
+.card-quiz:hover {
+  cursor: pointer;
+  border-color: #E82127;
+}
+
+.card-quiz h2 {
+  font-family: 'Bebas Neue';
+  font-size: 35px;
+  margin: 5px 0 0 0;
+  font-weight: 550;
+}
+
+.card-quiz p {
+  margin: 0;
+  color: #8B929B;
+}
+
+.div-historico {
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+}
+
+.div-historico a {
+  text-decoration: none;
+}
+
+.btn-historico {
+  width: 130px;
+  height: 50px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #8B929B;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Inter';
+  cursor: pointer;
+}
+
+.container-tabela {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 30px 0 0;
+}
+
+.tabela-historico {
+  width: 80%;
+  max-width: 1000px;
+  color: white;
+  border-collapse: collapse;
+  border-radius: 12px;
+  font-size: 20px;
+  overflow: hidden;
+}
+
+.tabela-historico th, td {
+  border: 1px solid #999;
+  padding: 20px 32px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.tabela-historico th {
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-family: 'Bebas Neue';
+  font-weight: 500;
+  color: #9a9a9a;
+  border-bottom: 2px solid #e10600;  /* cor de destaque */
+}
+
+tbody tr:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.container-perfil {
+  margin: 50px 30px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-perfil {
+  background-color: none;
+  border: solid 1px #8B929B;
+  width: 400px;
+  height: auto;
+  border-radius: 10px;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.campos-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btns-perfil {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ipt-perfil {
+  background-color: #1C1D21;
+  color: #8B929B;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 350px;
+  padding: 15px 10px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.btn-perfil {
+  background-color: #8B929B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 350px;
+  font-size: 15px;
+  font-family: 'Inter';
+  cursor: pointer;
+}
+
+.btn-perfil-salvar {
+  background-color: #E82127;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 50px;
+  width: 350px;
+  font-size: 15px;
+  font-family: 'Inter';
+  cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.card-senha {
+    position: relative;
+
+    width: 90%;
+    max-width: 400px;
+
+    background-color: black;
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-senha h2 {
+    color: white;
+    font-family: 'Inter';
+    margin: 25px 0 10px 0;
+}
+
+.card-senha input {
+    padding: 12px;
+    background-color: #1c1c1c;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: white;
+}
+
+.card-senha button {
+    padding: 12px;
+    background-color: #E82127;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Inter';
+}
+
+.card-senha p {
+    margin: 0;
+    font-size: 10px;
+    font-family: 'Inter';
+    color: #8B929B;
+}
+
+.fechar {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* .btn-historico:hover {
+  border: solid 1px #E82127;
+  background-color: black;
+} */
+
 .area-parametros-alerta {
   /* border: 2px solid pink; */
   display: flex;

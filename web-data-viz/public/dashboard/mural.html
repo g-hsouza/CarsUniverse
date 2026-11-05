@@ -2,11 +2,10 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Avisos</title>
+    <title>CarsUniverse | Perfil</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
     <link rel="stylesheet" href="./../css/estilo.css" />
@@ -17,35 +16,39 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
+<body onload="atualizarFeed()">
 
     <div class="janela">
 
+        <div class="header-left dash-header">
 
-        <div class="header-left">
+            <img src="../assets/imgs/logo_carsUniverse.png" alt="" width="150px" height="100px">
 
-            <h1>AquaTech</h1>
-
-            <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
-            </div>
-
-            <div class="btn-nav-white">
+            <div class="botoes-nav">
                 <a href="cards.html">
-                    <h3>Aquários e Terrários</h3>
+                    <div class="btn-nav-white">
+                        <h3>Dashboard</h3>
+                    </div>
                 </a>
-            </div>
 
-            <div class="btn-nav-white">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
+                <a href="dashboard.html">
+                    <div class="btn-nav-white">
+                        <h3>Quiz</h3>
+                    </div>
                 </a>
-            </div>
 
-            <div class="btn-nav">
-                <h3>Mural de Avisos</h3>
+                <div class="btn-nav">
+                    <h3>Perfil</h3>
+                </div>
+
             </div>
 
             <div class="btn-logout" onclick="limparSessao()">
@@ -54,197 +57,113 @@
 
         </div>
 
-        <div class="dash-right">
+        <div class="dash">
 
-
-            <div class="avisos">
-                <div id="alerta">
+            <div class="topo-dash">
+                <div class="titulo-dash">
+                    <h1>PERFIL</h1>
+                    <p>Personalize seu perfil!</p>
                 </div>
-                <div class="container">
-                    <h1>Publicar um aviso</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
+            </div>
+
+            <div class="container-perfil">
+                <div class="form-perfil">
+                    <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px">
+
+                    <div class="campos-perfil">
+                        <input type="text" class="ipt-perfil">
+                        <input type="text" class="ipt-perfil">
+                        <button class="btn-perfil" onclick="abrirModalSenha()">Alterar Senha</button>
                     </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
+
+                    <div class="btns-perfil">
+                        <button class="btn-perfil-salvar">Salvar Alterações</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
+            <div id="modalSenha" class="modal">
 
+                <div class="card-senha">
+
+                    <span class="fechar" onclick="fecharModalSenha()">X</span>
+
+                    <h2>Alterar Senha</h2>
+
+                    <input type="password" id="ipt_senhaAtual" placeholder="Senha atual">
+
+                    <input type="password" id="ipt_novaSenha" placeholder="Nova senha" onkeyup="mostrarSenha()">
+                    <p class="p-senha"><span id="senha_8caracteres">✗ 8+ caracteres</span> | <span
+                            id="senha_maiuscula">✗ Letra
+                            maiúscula</span> | <span id="senha_minuscula">✗ Letra minúscula</span> | <span
+                            id="senha_especial">✗
+                            Caractere especial</span></p>
+
+                    <input type="password" id="ipt_confirmacaoSenha" placeholder="Confirmar nova senha" onkeyup="verificarSenha()">
+                    <p id="p_confirmacaoSenha"></p>
+
+                    <button onclick="alterarSenha()"> Confirmar Alteração</button>
+
+                </div>
+
+            </div>
 
 </body>
 
 </html>
 
 <script>
-    
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
+    function abrirModalSenha() {
+        document.getElementById('modalSenha').style.display = 'flex';
     }
 
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
-
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
-        }
-
-        fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
-        return false;
-
+    function fecharModalSenha() {
+        document.getElementById('modalSenha').style.display = 'none';
     }
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
+    function mostrarSenha() {
+    var senha = ipt_novaSenha.value.trim();
+    var senhaUpper = senha.toUpperCase();
+    var senhaLower = senha.toLowerCase();
+    var temEspecial = senha.includes('!') || senha.includes('*') || senha.includes('.') || senha.includes('@') || senha.includes('#') || senha.includes('$');
 
+    if (temEspecial) {
+      senha_especial.innerHTML = `<span style="color: #2E9B68;">✓ Caractere especial</span>`
+    } else {
+      senha_especial.innerHTML = `<span style="color: #8B929B;">✗ Caractere especial</span>`
     }
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+    if (senha != senhaUpper) {
+      senha_minuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra minúscula</span>`
+    } else {
+      senha_minuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra minúscula</span>`
     }
 
-    function atualizarFeed() {
-        fetch("/avisos/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-
-
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
-            }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
+    if (senha != senhaLower) {
+      senha_maiuscula.innerHTML = `<span style="color: #2E9B68;">✓ Letra maiúscula</span>`
+    } else {
+      senha_maiuscula.innerHTML = `<span style="color: #8B929B;">✗ Letra maiúscula</span>`
     }
+
+    if (senha.length >= 8) {
+      senha_8caracteres.innerHTML = `<span style="color: #2E9B68;">✓ 8+ caracteres</span>`
+    } else {
+      senha_8caracteres.innerHTML = `<span style="color: #8B929B;">✗ 8+ caracteres</span>`
+    }
+  }
+
+  function verificarSenha(){
+    var senha = ipt_novaSenha.value.trim();
+    var confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
+
+    if (senha != confirmacaoSenha){
+        p_confirmacaoSenha.innerHTML = `<span style="color: #E82127;">✗ Senhas não coincidem</span>`
+    } else {
+        p_confirmacaoSenha.innerHTML = `<span style="color: #2E9B68;">✓ Senhas coincidem</span>`
+    }
+  }
 
 </script>
