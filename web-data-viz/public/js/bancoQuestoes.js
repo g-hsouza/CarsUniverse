@@ -422,6 +422,357 @@ let desempenhoCategorias = {
     }
 };
 
+
+const listaDeQuestoesPersonalidade = [
+
+    // HUMILDADE
+
+    {
+        pergunta: "Quando alguém aponta um erro meu, procuro reconhecer e aprender com a situação.",
+        categoria: "Humildade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Consigo reconhecer quando outra pessoa tem mais conhecimento do que eu sobre determinado assunto.",
+        categoria: "Humildade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Valorizo minhas conquistas sem me considerar superior às outras pessoas.",
+        categoria: "Humildade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // AMBIÇÃO
+
+    {
+        pergunta: "Costumo estabelecer objetivos que me desafiam a evoluir.",
+        categoria: "Ambição",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Estou disposto a sair da minha zona de conforto para alcançar meus objetivos.",
+        categoria: "Ambição",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Procuro constantemente oportunidades para crescer pessoal e profissionalmente.",
+        categoria: "Ambição",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // EMPATIA
+
+    {
+        pergunta: "Procuro entender o ponto de vista de alguém antes de julgar suas atitudes.",
+        categoria: "Empatia",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Percebo quando alguém próximo está passando por dificuldades emocionais.",
+        categoria: "Empatia",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Procuro oferecer ajuda quando percebo que alguém está enfrentando uma dificuldade.",
+        categoria: "Empatia",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // LIDERANÇA
+
+    {
+        pergunta: "Gosto de tomar a iniciativa quando um grupo precisa organizar uma atividade.",
+        categoria: "Liderança",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Sinto-me confortável em orientar outras pessoas na realização de uma tarefa.",
+        categoria: "Liderança",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Quando um grupo enfrenta dificuldades, procuro ajudar a encontrar um caminho para continuar.",
+        categoria: "Liderança",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // PERSISTÊNCIA
+
+    {
+        pergunta: "Continuo tentando mesmo quando encontro dificuldades para realizar uma tarefa.",
+        categoria: "Persistência",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Quando não consigo alcançar um objetivo, procuro outras maneiras de tentar novamente.",
+        categoria: "Persistência",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Consigo manter meu esforço mesmo quando os resultados demoram a aparecer.",
+        categoria: "Persistência",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // CRIATIVIDADE
+
+    {
+        pergunta: "Gosto de encontrar soluções diferentes para problemas do cotidiano.",
+        categoria: "Criatividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Costumo imaginar possibilidades diferentes antes de tomar uma decisão.",
+        categoria: "Criatividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Tenho facilidade para pensar em novas ideias quando estou diante de um desafio.",
+        categoria: "Criatividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // RESPONSABILIDADE
+
+    {
+        pergunta: "Costumo cumprir os compromissos que assumo, mesmo quando surgem imprevistos.",
+        categoria: "Responsabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Procuro assumir as consequências das minhas próprias decisões.",
+        categoria: "Responsabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Organizo minhas tarefas para conseguir cumprir os prazos estabelecidos.",
+        categoria: "Responsabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // SOCIABILIDADE
+
+    {
+        pergunta: "Sinto-me confortável em conhecer e conversar com pessoas novas.",
+        categoria: "Sociabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Gosto de participar de atividades que envolvem interação com outras pessoas.",
+        categoria: "Sociabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Costumo contribuir para manter um bom relacionamento entre as pessoas de um grupo.",
+        categoria: "Sociabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // ADAPTABILIDADE
+
+    {
+        pergunta: "Consigo lidar bem quando meus planos precisam mudar inesperadamente.",
+        categoria: "Adaptabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Tenho facilidade para aprender a utilizar ferramentas ou métodos desconhecidos.",
+        categoria: "Adaptabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Quando estou em um ambiente novo, procuro me ajustar às circunstâncias.",
+        categoria: "Adaptabilidade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+
+    // COMPETITIVIDADE
+
+    {
+        pergunta: "Gosto de comparar meu desempenho atual com meus resultados anteriores para buscar evolução.",
+        categoria: "Competitividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Desafios e competições aumentam minha motivação para alcançar bons resultados.",
+        categoria: "Competitividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    },
+    {
+        pergunta: "Quando alguém alcança um resultado melhor que o meu, sinto vontade de melhorar meu próprio desempenho.",
+        categoria: "Competitividade",
+        alternativaA: "Nunca",
+        alternativaB: "Raramente",
+        alternativaC: "Frequentemente",
+        alternativaD: "Sempre"
+    }
+
+];
+
+const perfisPersonagens = [
+    {
+        nome: "Relâmpago McQueen",
+        caracteristicas: [
+            "Ambição",
+            "Persistência",
+            "Competitividade",
+            "Adaptabilidade"
+        ]
+    },
+    {
+        nome: "Mate",
+        caracteristicas: [
+            "Humildade",
+            "Empatia",
+            "Sociabilidade",
+            "Criatividade"
+        ]
+    },
+    {
+        nome: "Sally Carrera",
+        caracteristicas: [
+            "Empatia",
+            "Responsabilidade",
+            "Sociabilidade",
+            "Adaptabilidade"
+        ]
+    },
+    {
+        nome: "Doc Hudson",
+        caracteristicas: [
+            "Humildade",
+            "Persistência",
+            "Responsabilidade",
+            "Liderança"
+        ]
+    },
+    {
+        nome: "Cruz Ramirez",
+        caracteristicas: [
+            "Ambição",
+            "Persistência",
+            "Adaptabilidade",
+            "Liderança"
+        ]
+    },
+    {
+        nome: "Jackson Storm",
+        caracteristicas: [
+            "Ambição",
+            "Competitividade",
+            "Responsabilidade",
+            "Persistência"
+        ]
+    },
+    {
+        nome: "Luigi",
+        caracteristicas: [
+            "Sociabilidade",
+            "Empatia",
+            "Humildade",
+            "Criatividade"
+        ]
+    },
+    {
+        nome: "Ramone",
+        caracteristicas: [
+            "Criatividade",
+            "Sociabilidade",
+            "Adaptabilidade",
+            "Ambição"
+        ]
+    }
+];
+
+
 function reiniciarDesempenho() {
     desempenhoCategorias = {
         Personagens: { certas: 0, erradas: 0 },

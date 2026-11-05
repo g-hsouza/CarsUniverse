@@ -313,8 +313,35 @@
             btnProx.disabled = true
             btnSubmeter.disabled = true
             // btnConcluir.disabled = true
-            btnTentarNovamente.disabled = false
 
+            // Envia os resultados da tentativa para o servidor (se usuário estiver logado)
+            try {
+                var idUsuario = sessionStorage.ID_USUARIO;
+                if (idUsuario) {
+                    fetch('/tentativas/conhecimento', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            fkUsuario: idUsuario,
+                            acertos: certas,
+                            erros: erradas,
+                            desempenho: desempenhoCategorias
+                        })
+                    }).then(function (res) {
+                        if (res.ok) {
+                            console.log('Tentativa registrada com sucesso');
+                        } else {
+                            res.text().then(function (txt) { console.error('Erro ao registrar tentativa:', txt); });
+                        }
+                    }).catch(function (err) { console.error('Erro ao enviar tentativa:', err); });
+                } else {
+                    console.log('Usuário não está logado; tentativa não será enviada.');
+                }
+            } catch (e) {
+                console.error('Erro ao tentar enviar resultados da tentativa:', e);
+            }
         }
 
         window.submeter = submeter;
