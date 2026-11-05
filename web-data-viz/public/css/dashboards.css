@@ -220,6 +220,10 @@ h1, h2, h3 {
   justify-content: space-evenly;
 }
 
+.quizzes a {
+  text-decoration: none;
+}
+
 .card-quiz {
   width: 450px;
   height: 300px;
@@ -239,6 +243,7 @@ h1, h2, h3 {
 .card-quiz:hover {
   cursor: pointer;
   border-color: #E82127;
+  transition: 0.2s;
 }
 
 .card-quiz h2 {
@@ -315,6 +320,7 @@ h1, h2, h3 {
 
 tbody tr:hover {
   background: rgba(255, 255, 255, 0.06);
+  transition: 0.2s;
 }
 
 .container-perfil {
@@ -757,6 +763,7 @@ canvas {
 .btn-nav-white:hover {
   cursor: pointer;
   border-color: #E82127;
+  transition: 0.2s;
 }
 
 .btn-nav-white h3 {
