@@ -212,8 +212,8 @@ body {
     margin: 0;
 }
 
-#pontuacaoFinal {
-    font-size: 40px;
+#spanPontuacaoFinal {
+    font-size: 30px;
     text-align: center;
     align-self: center;
 }
@@ -308,4 +308,9 @@ body {
 
 .text-new-gray {
     color: var(--new-gray);
+}
+
+.div-img-personalidade {
+    width: 300px;
+    height: 300px;
 }

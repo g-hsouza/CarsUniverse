@@ -700,6 +700,7 @@ const listaDeQuestoesPersonalidade = [
 const perfisPersonagens = [
     {
         nome: "Relâmpago McQueen",
+        img: "../assets/imgs/personagens/Mcqueen.png",
         caracteristicas: [
             "Ambição",
             "Persistência",
@@ -709,6 +710,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Mate",
+        img: "../assets/imgs/personagens/Mater.png",
         caracteristicas: [
             "Humildade",
             "Empatia",
@@ -718,6 +720,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Sally Carrera",
+        img: "../assets/imgs/personagens/Sally.png",
         caracteristicas: [
             "Empatia",
             "Responsabilidade",
@@ -727,6 +730,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Doc Hudson",
+        img: "../assets/imgs/personagens/Doc.png",
         caracteristicas: [
             "Humildade",
             "Persistência",
@@ -736,6 +740,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Cruz Ramirez",
+        img: "../assets/imgs/personagens/Cruz.png",
         caracteristicas: [
             "Ambição",
             "Persistência",
@@ -745,6 +750,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Jackson Storm",
+        img: "../assets/imgs/personagens/Storm.png",
         caracteristicas: [
             "Ambição",
             "Competitividade",
@@ -754,6 +760,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Luigi",
+        img: "../assets/imgs/personagens/Luigi.png",
         caracteristicas: [
             "Sociabilidade",
             "Empatia",
@@ -763,6 +770,7 @@ const perfisPersonagens = [
     },
     {
         nome: "Ramone",
+        img: "../assets/imgs/personagens/Ramon.png",
         caracteristicas: [
             "Criatividade",
             "Sociabilidade",
@@ -771,6 +779,19 @@ const perfisPersonagens = [
         ]
     }
 ];
+
+let desempenhoPersonalidade = {
+    Humildade: { pontuacao: 0 },
+    Ambição: { pontuacao: 0 },
+    Empatia: { pontuacao: 0 },
+    Liderança: { pontuacao: 0 },
+    Persistência: { pontuacao: 0 },
+    Criatividade: { pontuacao: 0 },
+    Responsabilidade: { pontuacao: 0 },
+    Sociabilidade: { pontuacao: 0 },
+    Adaptabilidade: { pontuacao: 0 },
+    Competitividade: { pontuacao: 0 }
+};
 
 
 function reiniciarDesempenho() {
@@ -782,4 +803,4 @@ function reiniciarDesempenho() {
     };
 }
 
-export { listaDeQuestoesConhecimento, desempenhoCategorias, reiniciarDesempenho };
+export { listaDeQuestoesConhecimento, listaDeQuestoesPersonalidade, perfisPersonagens, desempenhoCategorias, desempenhoPersonalidade, reiniciarDesempenho };
