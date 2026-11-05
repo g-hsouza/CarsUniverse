@@ -24,7 +24,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="atualizarFeed()">
+<body onload="validarSessao(), atualizarFeed()">
 
     <div class="janela">
 
@@ -71,8 +71,8 @@
                     <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px">
 
                     <div class="campos-perfil">
-                        <input type="text" class="ipt-perfil">
-                        <input type="text" class="ipt-perfil">
+                        <input type="text" class="ipt-perfil" id="ipt_nome">
+                        <input type="text" class="ipt-perfil" id="ipt_email">
                         <button class="btn-perfil" onclick="abrirModalSenha()">Alterar Senha</button>
                     </div>
 
@@ -114,7 +114,8 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    ipt_nome.value = sessionStorage.NOME_USUARIO;
+    ipt_email.value = sessionStorage.EMAIL_USUARIO;
 
     function abrirModalSenha() {
         document.getElementById('modalSenha').style.display = 'flex';
