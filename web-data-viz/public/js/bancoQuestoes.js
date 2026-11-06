@@ -699,6 +699,7 @@ const listaDeQuestoesPersonalidade = [
 
 const perfisPersonagens = [
     {
+        idPersonagem: 1,
         nome: "Relâmpago McQueen",
         img: "../assets/imgs/personagens/Mcqueen.png",
         caracteristicas: [
@@ -709,6 +710,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 2,
         nome: "Mate",
         img: "../assets/imgs/personagens/Mater.png",
         caracteristicas: [
@@ -719,6 +721,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 3,
         nome: "Sally Carrera",
         img: "../assets/imgs/personagens/Sally.png",
         caracteristicas: [
@@ -729,6 +732,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 4,
         nome: "Doc Hudson",
         img: "../assets/imgs/personagens/Doc.png",
         caracteristicas: [
@@ -739,6 +743,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 5,
         nome: "Cruz Ramirez",
         img: "../assets/imgs/personagens/Cruz.png",
         caracteristicas: [
@@ -749,6 +754,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 6,
         nome: "Jackson Storm",
         img: "../assets/imgs/personagens/Storm.png",
         caracteristicas: [
@@ -759,6 +765,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 7,
         nome: "Luigi",
         img: "../assets/imgs/personagens/Luigi.png",
         caracteristicas: [
@@ -769,6 +776,7 @@ const perfisPersonagens = [
         ]
     },
     {
+        idPersonagem: 8,
         nome: "Ramone",
         img: "../assets/imgs/personagens/Ramon.png",
         caracteristicas: [

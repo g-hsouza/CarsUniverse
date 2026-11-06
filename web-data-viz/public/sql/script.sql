@@ -34,7 +34,7 @@ CREATE TABLE resultado_tentativa (
 CREATE TABLE personagem (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    caracteristica VARCHAR(45) NOT NULL,
+    descricao VARCHAR(255) NOT NULL,
     foto VARCHAR(255) NOT NULL
 );
 

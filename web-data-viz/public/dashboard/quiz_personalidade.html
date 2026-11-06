@@ -84,8 +84,7 @@
 
             <div id="botoes" class="flex-colunar padding-8">
                 <button onclick="submeter()" id="btnSubmeter" class="btns-quiz">Submeter resposta</button>
-                <button onclick="avancar()" id="btnProx" disabled class="btns-quiz">Avançar para próxima
-                    questão</button>
+                <button onclick="avancar()" id="btnProx" disabled class="btns-quiz">Avançar para próxima questão</button>
             </div>
 
         </div>
@@ -318,8 +317,6 @@
             document.getElementById('imagemPersonagem').src = personagemResultado.img;
             document.getElementById('spanPontuacaoFinal').innerHTML = personagemResultado.caracteristicas;
 
-            console.log(desempenhoCategorias);
-
             btnProx.disabled = true
             btnSubmeter.disabled = true
             // btnConcluir.disabled = true
@@ -328,16 +325,14 @@
             try {
                 var idUsuario = sessionStorage.ID_USUARIO;
                 if (idUsuario) {
-                    fetch('/tentativas/conhecimento', {
+                    fetch('/tentativas/personalidade', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             fkUsuario: idUsuario,
-                            acertos: certas,
-                            erros: erradas,
-                            desempenho: desempenhoCategorias
+                            fkPersonagem: personagemResultado.idPersonagem
                         })
                     }).then(function (res) {
                         if (res.ok) {

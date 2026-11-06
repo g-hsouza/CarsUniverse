@@ -48,6 +48,39 @@ function registrarTentativaConhecimento(req, res) {
         });
 }
 
+function registrarTentativaPersonalidade (req, res) {
+    var fkUsuario = req.body.fkUsuario;
+    var fkPersonagem = req.body.fkPersonagem;
+
+    if (fkUsuario == undefined) {
+        res.status(400).send("fkUsuario está undefined");
+        return;
+    }
+
+    if (fkPersonagem == undefined) {
+        res.status(400).send("fkPersonagem está undefined");
+        return;
+    }
+
+    tentativaModel.inserirTentativaPersonalidade(fkUsuario, fkPersonagem)
+        .then(function (resultado) {
+            // resultado.insertId deve conter o id da tentativa criada
+            var idTentativa = resultado.insertId;
+            console.log("Tentativa inserida com id: ", idTentativa);
+
+            res.status(201).json({
+                idTentativa: idTentativa,
+                mensagem: "Tentativa registrada com sucesso!"
+            });
+
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro);
+        });
+    }
+
 module.exports = {
-    registrarTentativaConhecimento
+    registrarTentativaConhecimento,
+    registrarTentativaPersonalidade
 };

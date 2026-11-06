@@ -7,4 +7,9 @@ router.post('/conhecimento', function (req, res) {
     tentativaController.registrarTentativaConhecimento(req, res);
 });
 
+//Rota para registrar tentativa de personalidade 
+router.post('/personalidade', function (req, res) {
+    tentativaController.registrarTentativaPersonalidade(req, res);
+});
+
 module.exports = router;

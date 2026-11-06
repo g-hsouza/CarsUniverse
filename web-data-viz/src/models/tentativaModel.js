@@ -18,7 +18,17 @@ function inserirResultadoTentativa(fkTentativa, categoria, acertos, erros) {
     return database.executar(instrucaoSql);
 }
 
+function inserirTentativaPersonalidade(fkUsuario, fkPersonagem) {
+    console.log("ACESSEI O MODEL tentativaModel -> inserirTentativaPersonalidade", fkUsuario, fkPersonagem);
+    var instrucaoSql = `
+        INSERT INTO tentativa_personalidade (fk_usuario, fk_personagem) VALUES (${fkUsuario}, ${fkPersonagem});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     inserirTentativaConhecimento,
-    inserirResultadoTentativa
+    inserirResultadoTentativa,
+    inserirTentativaPersonalidade
 };
