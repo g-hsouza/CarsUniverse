@@ -205,8 +205,55 @@
         }
     }
 
-    function alterarSenha(){
-        
+    function alterarSenha() {
+        var senhaAtual = ipt_senhaAtual.value.trim();
+        var novaSenha = ipt_novaSenha.value.trim();
+        var confirmacaoSenha = ipt_confirmacaoSenha.value.trim();
+
+        var senhaUpper = novaSenha.toUpperCase();
+        var senhaLower = novaSenha.toLowerCase();
+        var temEspecial = novaSenha.includes('!') || novaSenha.includes('*') || novaSenha.includes('.') || novaSenha.includes('@') || novaSenha.includes('#') || novaSenha.includes('$');
+
+        var senhaValida = novaSenha.length >= 8 && novaSenha != senhaUpper && novaSenha != senhaLower && temEspecial;
+
+        if (!senhaValida){
+            alert("A senha não atende os requisitos!")
+        } else if (novaSenha != confirmacaoSenha){
+            alert("As senhas não coincidem!")
+        } else {
+
+            try {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (idUsuario) {
+                fetch('/usuarios/alterarSenha', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: idUsuario,
+                        senhaAtual: senhaAtual,
+                        novaSenha: novaSenha
+                    })
+                }).then(function (res) {
+                    if (res.ok) {
+                        console.log('Dados atualizados com sucesso');
+                        alert("Senha alterada com sucesso!")
+                        fecharModalSenha();
+                    } else {
+                        res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
+                        alert("Senha atual incorreta ou erro ao alterar!")
+                    }
+                }).catch(function (err) { console.error('Erro ao alterar senha:', err); });
+            } else {
+                console.log('Usuário não está logado');
+            }
+        } catch (e) {
+            console.error('Erro ao tentar alterar senha', e);
+        }
+
+
+        }
     }
 
 </script>

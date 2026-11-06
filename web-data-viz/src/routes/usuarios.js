@@ -16,4 +16,8 @@ router.put("/atualizar", function (req, res) {
     usuarioController.atualizar(req, res);
 });
 
+router.put("/alterarSenha", function (req, res) {
+    usuarioController.alterarSenha(req, res);
+});
+
 module.exports = router;

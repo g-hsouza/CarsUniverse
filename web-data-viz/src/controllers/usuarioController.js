@@ -89,7 +89,7 @@ function atualizar(req, res) {
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (id == undefined){
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu id está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
@@ -111,8 +111,51 @@ function atualizar(req, res) {
     }
 }
 
+function alterarSenha(req, res) {
+    var id = req.body.id;
+    var senhaAtual = req.body.senhaAtual;
+    var novaSenha = req.body.novaSenha;
+
+    // Faça as validações dos valores
+    if (senhaAtual == undefined) {
+        res.status(400).send("Sua senha atual está undefined!");
+    } else if (novaSenha == undefined) {
+        res.status(400).send("Sua nova senha está undefined!");
+    } else if (id == undefined){
+        res.status(400).send("Seu id está undefined!");
+    } else {
+
+        usuarioModel.buscarSenha(id)
+        .then(function (resultado) {
+
+            if (resultado.length == 0) {
+                return res.status(404).send("Usuário não encontrado");
+            }
+
+            if (senhaAtual != resultado[0].senha) {
+                return res.status(401).send("Senha atual incorreta");
+            }
+
+            usuarioModel.alterarSenha(id, novaSenha)
+                .then(function (resultado) {
+                    res.status(200).send("Senha alterada com sucesso!");
+                })
+                .catch(function (erro) {
+                    console.log(erro);
+                    res.status(500).send(erro);
+                });
+
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).send(erro);
+        });
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
-    atualizar
+    atualizar,
+    alterarSenha
 }
