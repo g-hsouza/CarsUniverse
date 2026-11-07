@@ -2,10 +2,20 @@
 function validarSessao() {
     var email = sessionStorage.EMAIL_USUARIO;
     var nome = sessionStorage.NOME_USUARIO;
+    var fotoPerfil = sessionStorage.FOTO_PERFIL;
 
+    var imagem = document.getElementById('foto-perfil');
     var b_usuario = document.getElementById("b_usuario");
     var ipt_nome = document.getElementById("ipt_nome");
     var ipt_email = document.getElementById("ipt_email");
+
+    console.log(sessionStorage.FOTO_PERFIL);
+
+    if (fotoPerfil && fotoPerfil != 'null') {
+        imagem.src = `/uploads/${fotoPerfil}`;
+    } else {
+        imagem.src = "../assets/imgs/icone.png";
+    }
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
@@ -14,6 +24,8 @@ function validarSessao() {
     } else {
         window.location = "../login.html";
     }
+
+    
 }
 
 function limparSessao() {
@@ -21,7 +33,7 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
-carregamento (loading)
+carregamento(loading)
 function aguardar() {
     var divAguardar = document.getElementById("div_aguardar");
     divAguardar.style.display = "flex";

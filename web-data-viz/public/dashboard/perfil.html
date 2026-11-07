@@ -68,7 +68,16 @@
 
             <div class="container-perfil">
                 <div class="form-perfil">
-                    <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px">
+                    <div class="foto-usuario">
+                        <label for="input-foto">
+                            <div class="fotos-usuario">
+                                <img src="../assets/imgs/editar.png" alt="" width="30px" height="30px" id="img-editar">
+                                <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px" id="foto-perfil" class="foto-perfil">
+                            </div>
+                        </label>
+
+                        <input type="file" id="input-foto" accept="image/*" onchange="exibirPreview(event)" hidden>
+                    </div>
 
                     <div class="campos-perfil">
                         <input type="text" class="ipt-perfil" id="ipt_nome">
@@ -117,6 +126,22 @@
 <script>
     ipt_nome.value = sessionStorage.NOME_USUARIO;
     ipt_email.value = sessionStorage.EMAIL_USUARIO;
+
+    function exibirPreview(event) {
+
+        var arquivo = event.target.files[0];
+
+        if (arquivo) {
+
+            var leitor = new FileReader();
+
+            leitor.onload = function () {
+                document.getElementById('foto-perfil').src = leitor.result;
+            };
+
+            leitor.readAsDataURL(arquivo);
+        }
+    }
 
     function abrirModalSenha() {
         document.getElementById('modalSenha').style.display = 'flex';
@@ -174,17 +199,24 @@
 
         try {
             var idUsuario = sessionStorage.ID_USUARIO;
+
             if (idUsuario) {
+
+                var formulario = new FormData();
+
+                formulario.append('id', idUsuario);
+                formulario.append('nomeAtualizado', nomeAtualizado);
+                formulario.append('emailAtualizado', emailAtualizado);
+
+                var foto = document.getElementById('input-foto').files[0];
+
+                if (foto) {
+                    formulario.append('fotoPerfil', foto);
+                }
+
                 fetch('/usuarios/atualizar', {
                     method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: idUsuario,
-                        nomeAtualizado: nomeAtualizado,
-                        emailAtualizado: emailAtualizado
-                    })
+                    body: formulario
                 }).then(function (res) {
                     if (res.ok) {
 
@@ -216,41 +248,41 @@
 
         var senhaValida = novaSenha.length >= 8 && novaSenha != senhaUpper && novaSenha != senhaLower && temEspecial;
 
-        if (!senhaValida){
+        if (!senhaValida) {
             alert("A senha não atende os requisitos!")
-        } else if (novaSenha != confirmacaoSenha){
+        } else if (novaSenha != confirmacaoSenha) {
             alert("As senhas não coincidem!")
         } else {
 
             try {
-            var idUsuario = sessionStorage.ID_USUARIO;
-            if (idUsuario) {
-                fetch('/usuarios/alterarSenha', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        id: idUsuario,
-                        senhaAtual: senhaAtual,
-                        novaSenha: novaSenha
-                    })
-                }).then(function (res) {
-                    if (res.ok) {
-                        console.log('Dados atualizados com sucesso');
-                        alert("Senha alterada com sucesso!")
-                        fecharModalSenha();
-                    } else {
-                        res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
-                        alert("Senha atual incorreta ou erro ao alterar!")
-                    }
-                }).catch(function (err) { console.error('Erro ao alterar senha:', err); });
-            } else {
-                console.log('Usuário não está logado');
+                var idUsuario = sessionStorage.ID_USUARIO;
+                if (idUsuario) {
+                    fetch('/usuarios/alterarSenha', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            id: idUsuario,
+                            senhaAtual: senhaAtual,
+                            novaSenha: novaSenha
+                        })
+                    }).then(function (res) {
+                        if (res.ok) {
+                            console.log('Dados atualizados com sucesso');
+                            alert("Senha alterada com sucesso!")
+                            fecharModalSenha();
+                        } else {
+                            res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
+                            alert("Senha atual incorreta ou erro ao alterar!")
+                        }
+                    }).catch(function (err) { console.error('Erro ao alterar senha:', err); });
+                } else {
+                    console.log('Usuário não está logado');
+                }
+            } catch (e) {
+                console.error('Erro ao tentar alterar senha', e);
             }
-        } catch (e) {
-            console.error('Erro ao tentar alterar senha', e);
-        }
 
 
         }

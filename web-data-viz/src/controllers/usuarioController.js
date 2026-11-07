@@ -25,6 +25,7 @@ function autenticar(req, res) {
                                         email: resultadoAutenticar[0].email,
                                         nome: resultadoAutenticar[0].nome,
                                         senha: resultadoAutenticar[0].senha,
+                                        fotoPerfil: resultadoAutenticar[0].foto_perfil
                                     });
 
                     } else if (resultadoAutenticar.length == 0) {
@@ -83,6 +84,12 @@ function atualizar(req, res) {
     var nome = req.body.nomeAtualizado;
     var email = req.body.emailAtualizado;
 
+    var fotoPerfil = null;
+
+    if (req.file) {
+        fotoPerfil = req.file.filename;
+    }
+
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -93,7 +100,7 @@ function atualizar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.atualizar(id, nome, email)
+        usuarioModel.atualizar(id, nome, email, fotoPerfil)
             .then(
                 function (resultado) {
                     res.json(resultado);

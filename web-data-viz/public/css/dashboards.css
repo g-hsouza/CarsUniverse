@@ -155,6 +155,28 @@ h1, h2, h3 {
 .topo-dash img {
   margin-right: 30px;
   margin-top: 30px;
+  /* border-radius: 50%; */
+}
+
+.foto-perfil:hover {
+  cursor: pointer;
+  opacity: 50%;
+}
+
+.fotos-usuario {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fotos-usuario:hover #img-editar {
+  opacity: 1;
+}
+
+#img-editar {
+  position: absolute;
+  opacity: 0;
 }
 
 .div-kpis {
@@ -700,6 +722,10 @@ canvas {
 
 .header-left img {
   margin-top: 50px;
+}
+
+#foto-perfil {
+  border-radius: 50%;
 }
 
 .msg-dashboard {
