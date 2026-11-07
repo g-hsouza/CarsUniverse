@@ -72,7 +72,8 @@
                         <label for="input-foto">
                             <div class="fotos-usuario">
                                 <img src="../assets/imgs/editar.png" alt="" width="30px" height="30px" id="img-editar">
-                                <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px" id="foto-perfil" class="foto-perfil">
+                                <img src="../assets/imgs/icone.png" alt="" width="120px" height="120px" id="foto-perfil"
+                                    class="foto-perfil">
                             </div>
                         </label>
 
@@ -223,8 +224,21 @@
                         sessionStorage.NOME_USUARIO = nomeAtualizado;
                         sessionStorage.EMAIL_USUARIO = emailAtualizado;
 
-                        console.log('Dados atualizados com sucesso');
-                        alert("Dados atualizados com sucesso!")
+                        res.json().then(function (dados) {
+
+                            if (dados.fotoPerfil) {
+                                sessionStorage.FOTO_PERFIL = dados.fotoPerfil;
+
+                                var imagem = document.getElementById('foto-perfil');
+
+                                imagem.src = `/uploads/${dados.fotoPerfil}?t=${new Date().getTime()}`;
+                            }
+
+                            console.log('Dados atualizados com sucesso');
+                            alert("Dados atualizados com sucesso!");
+
+                        });
+
                     } else {
                         res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
                     }

@@ -103,7 +103,10 @@ function atualizar(req, res) {
         usuarioModel.atualizar(id, nome, email, fotoPerfil)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    res.json({
+                        resultado: resultado,
+                        fotoPerfil: fotoPerfil
+                    });
                 }
             ).catch(
                 function (erro) {
