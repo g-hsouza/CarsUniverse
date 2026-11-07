@@ -218,6 +218,12 @@ body {
     align-self: center;
 }
 
+#pontuacaoFinal {
+    font-size: 30px;
+    text-align: center;
+    align-self: center;
+}
+
 .linha {
     width: 600px;
     height: 1px;

@@ -25,8 +25,7 @@
 
 </head>
 
-<body onload="atualizacaoPeriodica()">
-    <!-- validarSessao(),  -->
+<body onload="carregarDashboard(), atualizacaoPeriodica()">
 
 
     <div class="janela">
@@ -74,45 +73,52 @@
                 </div>
             </div>
 
-            <div class="div-kpis">
-
-                <div class="kpi kpi-red">
-                    <h5>Total de quizzes realizados</h5>
-                    <h1>5</h1>
-                    <h5>Conhecimento + Personalidade</h5>
-                </div>
-
-                <div class="kpi">
-                    <h5>Taxa de acerto atual</h5>
-                    <h1>78,5%</h1>
-                    <h5>Quiz de conhecimento</h5>
-                </div>
-
-                <div class="kpi">
-                    <h5>Seu personagem</h5>
-                    <h1 class="h1-personagem">McQueen</h1>
-                    <h5>Último resultado de personalidade</h5>
-                </div>
-
-
+            <div class="msg-dashboard" id="msg-dashboard">
+                <h1>Parece que você ainda não realizou nenhum quiz!</h1>
+                <p>Faça uma tentativa para ter acesso à Dashboard.</p>
             </div>
 
-            <div class="div-graphs">
-                <div class="graph">
-                    <h5>Desempenho por Categoria</h5>
-                    <div>
-                        <canvas id="chartCategorie"></canvas>
+            <div id="dashboard" style="display: none;">
+                <div class="div-kpis">
+
+                    <div class="kpi kpi-red">
+                        <h5>Total de quizzes realizados</h5>
+                        <h1 id="totalQuiz">0</h1>
+                        <h5>Conhecimento + Personalidade</h5>
+                    </div>
+
+                    <div class="kpi">
+                        <h5>Taxa de acerto atual</h5>
+                        <h1 id="taxaAcerto">00,0%</h1>
+                        <h5>Quiz de conhecimento</h5>
+                    </div>
+
+                    <div class="kpi">
+                        <h5>Seu personagem</h5>
+                        <h1 class="h1-personagem" id="personagem">---</h1>
+                        <h5>Último resultado de personalidade</h5>
+                    </div>
+
+
+                </div>
+
+                <div class="div-graphs">
+                    <div class="graph">
+                        <h5>Desempenho por Categoria</h5>
+                        <div>
+                            <canvas id="chartCategorie"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="graph">
+                        <h5>Evolução Taxa de Acerto</h5>
+                        <div>
+                            <canvas id="chartEvolution"></canvas>
+                        </div>
                     </div>
                 </div>
 
-                <div class="graph">
-                    <h5>Evolução Taxa de Acerto</h5>
-                    <div>
-                        <canvas id="chartEvolution"></canvas>
-                    </div>
-                </div>
             </div>
-
         </div>
 
     </div>
@@ -123,64 +129,150 @@
     const chartCategorie = document.getElementById('chartCategorie');
     const chartEvolution = document.getElementById('chartEvolution');
 
+    var graficoCategoria;
+    var graficoEvolucao;
 
-    new Chart(chartCategorie, {
-        type: 'bar',
-        data: {
-            labels: ['Personagens', 'Filmes', 'Corridas', 'Lugares'],
-            datasets: [{
-                label: 'Taxa Acerto',
-                data: [92, 85, 78, 65],
-                backgroundColor: 'rgba(245, 197, 66, 0.5)',
-                borderColor: 'rgba(245, 197, 66, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 100,
-                    ticks: {
-                        stepSize: 25,
-                        callback: function (value) {
-                            return value + '%';
-                        }
-                    }
-                }
-            }
-        }
-    });
+    function carregarDashboard() {
+        try {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (idUsuario) {
+                fetch(`/dashboard/buscarDadosDashboard?id=${idUsuario}`, {
+                    method: 'GET'
+                }).then(function (res) {
+                    if (res.ok) {
+                        console.log('Dados obtidos com sucesso');
+                        return res.json();
+                    } throw new Error('Erro ao buscar dados');
+                })
 
-    new Chart(chartEvolution, {
-        type: 'line',
-        data: {
-            labels: ['1ª', '2ª', '3ª', '4ª', '5ª'],
-            datasets: [{
-                label: 'Taxa Acerto',
-                data: [68, 72.5, 75, 82, 95],
-                backgroundColor: 'rgba(245, 197, 66, 0.5)',
-                borderColor: 'rgba(245, 197, 66, 1)',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    min: 0,
-                    max: 100,
-                    ticks: {
-                        stepSize: 25,
-                        callback: function (value) {
-                            return value + '%';
+                    .then(function (dados) {
+
+                        var qtdQuizzes = Number(dados.totalQuiz["Total de quizzes realizados"]);
+
+                        if (qtdQuizzes == 0) {
+                            document.getElementById("msg-dashboard").style.display = "flex";
+                            document.getElementById("dashboard").style.display = "none";
+                        } else {
+                            document.getElementById("msg-dashboard").style.display = "none";
+                            document.getElementById("dashboard").style.display = "block";
                         }
-                    }
-                }
+
+                        // console.log(dados);
+                        console.log(JSON.stringify(dados, null, 2));
+                        console.log("Categorias:", dados.categorias);
+                        console.log("Evolução:", dados.evolucao);
+
+                        document.getElementById("totalQuiz").textContent =
+                            dados.totalQuiz["Total de quizzes realizados"];
+
+                        document.getElementById("taxaAcerto").textContent =
+                            dados.taxaAcerto["Taxa de Acerto"] + "%";
+
+                        if (dados.personagem) {
+                            document.getElementById("personagem").textContent =
+                                dados.personagem["Seu Personagem"];
+                        } else {
+                            document.getElementById("personagem").textContent = "---";
+                        }
+
+                        var categorias = dados.categorias.map(function (item) {
+                            return item["Categoria"];
+                        });
+
+                        var taxas = dados.categorias.map(function (item) {
+                            return Number(item["Taxa Acerto"]);
+                        });
+
+
+                        graficoCategoria = new Chart(
+                            document.getElementById('chartCategorie'),
+                            {
+                                type: 'bar',
+                                data: {
+                                    labels: categorias,
+                                    datasets: [{
+                                        label: 'Taxa de Acerto (%)',
+                                        data: taxas,
+                                        backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                                        borderColor: 'rgba(245, 197, 66, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    animation: true,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            min: 0,
+                                            max: 100,
+                                            ticks: {
+                                                stepSize: 25,
+                                                callback: function (value) {
+                                                    return value + '%';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        );
+
+
+                        // GRÁFICO DE LINHA
+
+                        var tentativas = dados.evolucao.map(function (item, indice) {
+                            return (indice + 1) + "ª";
+                        });
+
+                        var taxasEvolucao = dados.evolucao.map(function (item) {
+                            return Number(item["Taxa de acerto"]);
+                        });
+
+                        graficoEvolucao = new Chart(
+                            document.getElementById('chartEvolution'),
+                            {
+                                type: 'line',
+                                data: {
+                                    labels: tentativas,
+                                    datasets: [{
+                                        label: 'Taxa de Acerto (%)',
+                                        data: taxasEvolucao,
+                                        backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                                        borderColor: 'rgba(245, 197, 66, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    animation: true,
+                                    scales: 
+                                    {
+                                        y: {
+                                            beginAtZero: true,
+                                            min: 0,
+                                            max: 100,
+                                            ticks: {
+                                                stepSize: 25,
+                                                callback: function (value) {
+                                                    return value + '%';
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        );
+
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    });
+
+            } else {
+                console.log('Usuário não está logado');
             }
+        } catch (e) {
+            console.error('Erro ao buscar dados', e);
         }
-    });
+    }
 
 
 

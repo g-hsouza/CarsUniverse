@@ -702,6 +702,39 @@ canvas {
   margin-top: 50px;
 }
 
+.msg-dashboard {
+  color: white;
+  height: 80%;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.msg-dashboard h1 {
+  font-family: 'Bebas Neue';
+  margin: 0;
+  font-size: 50px;
+  font-weight: 500;
+}
+
+#msg-historico {
+  color: white;
+  height: 80%;
+  margin-right: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#msg-historico h1 {
+  font-family: 'Bebas Neue';
+  margin: 0;
+  font-size: 50px;
+  font-weight: 500;
+}
+
 .dash-right {
   display: flex;
   width: 70%;
