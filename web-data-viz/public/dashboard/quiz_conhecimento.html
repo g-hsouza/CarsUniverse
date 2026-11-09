@@ -282,16 +282,16 @@
             let classComCoresParaMensagemFinal = null
             const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes
 
-            if (porcentagemFinalDeAcertos <= 0.3) {
-                textoParaMensagemFinal = "Parece que você não estudou..."
+            if (porcentagemFinalDeAcertos <= 0.5) {
+                textoParaMensagemFinal = "Até o Mate sabe mais que você!"
                 classComCoresParaMensagemFinal = "text-danger-with-bg"
             }
-            else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
-                textoParaMensagemFinal = "Pode melhorar na próxima, hein!"
+            else if (porcentagemFinalDeAcertos > 0.5 && porcentagemFinalDeAcertos < 0.9) {
+                textoParaMensagemFinal = "KA-CHOW! Você está pegando o jeito!"
                 classComCoresParaMensagemFinal = "text-warning-with-bg"
             }
             else if (porcentagemFinalDeAcertos >= 0.9) {
-                textoParaMensagemFinal = "Uau, parabéns!"
+                textoParaMensagemFinal = "Uau! A copa pistão é sua!"
                 classComCoresParaMensagemFinal = "text-success-with-bg"
             }
 
