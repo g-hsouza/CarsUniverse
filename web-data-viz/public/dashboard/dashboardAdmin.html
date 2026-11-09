@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarsUniverse | Dashboard</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body onload="carregarDashboardAdmin(), validarSessao(), atualizacaoPeriodica()">
+
+
+    <div class="janela">
+
+        <div class="header-left dash-header">
+
+            <img src="../assets/imgs/logo_carsUniverse.png" alt="" width="150px" height="100px">
+
+            <div class="botoes-nav">
+                <div class="btn-nav">
+                    <h3>Dashboard</h3>
+                </div>
+
+
+                <a href="usuarios.html">
+                    <div class="btn-nav-white">
+                        <h3>Usuarios</h3>
+                    </div>
+                </a>
+
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+
+            <div class="topo-dash">
+                <div class="titulo-dash">
+                    <h1>DASHBOARD ADMINISTRADOR</h1>
+                    <p>Olá, <span id="b_usuario">usuário</span>!</p>
+                </div>
+            </div>
+
+            <div class="msg-dashboard" id="msg-dashboard" style="display: none;">
+                <h1>Nenhum usuário realizou o quiz!</h1>
+                <p>Convide usuários para a plataforma.</p>
+            </div>
+
+            <div id="dashboard" style="display: block;">
+                <div class="div-kpis">
+
+                    <div class="kpi kpi-red">
+                        <h5>Usuários cadastrados</h5>
+                        <h1 id="totalUsuarios">0</h1>
+                        <h5>Total geral</h5>
+                    </div>
+
+                    <div class="kpi">
+                        <h5>Usuário mais ativo</h5>
+                        <h1 id="usuarioAtivo">---</h1>
+                        <h5>Maior quantidade de quizzes realizados</h5>
+                    </div>
+
+                    <div class="kpi">
+                        <h5>Quizzes realizados</h5>
+                        <h1 id="totalQuizGeral">---</h1>
+                        <h5>Total de tentativas</h5>
+                    </div>
+
+
+                </div>
+
+                <div class="div-graphs">
+                    <div class="graph">
+                        <h5>Personagens mais indicados no quiz de personalidade</h5>
+                        <div>
+                            <canvas id="chartCharacter"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="graph">
+                        <h5>Variação de atividade nos últimos 7 dias</h5>
+                        <div>
+                            <canvas id="chartActivity"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<script>
+    const chartCharacter = document.getElementById('chartCharacter');
+    const chartActivity = document.getElementById('chartActivity');
+
+    var graficoPersonagem;
+    var graficoAtividade;
+
+    function carregarDashboardAdmin() {
+        try {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (idUsuario) {
+                fetch(`/dashboard/buscarDadosDashboardAdmin`, {
+                    method: 'GET'
+                }).then(function (res) {
+                    if (res.ok) {
+                        console.log('Dados obtidos com sucesso');
+                        return res.json();
+                    } throw new Error('Erro ao buscar dados');
+                })
+
+                    .then(function (dados) {
+
+                        var qtdQuizzes = Number(dados.totalQuizAdmin[totalQuizGeral]);
+
+                        if (qtdQuizzes == 0) {
+                            document.getElementById("msg-dashboard").style.display = "flex";
+                            document.getElementById("dashboard").style.display = "none";
+                        } else {
+                            document.getElementById("msg-dashboard").style.display = "none";
+                            document.getElementById("dashboard").style.display = "block";
+                        }
+
+                        // console.log(dados);
+                        console.log(JSON.stringify(dados, null, 2));
+
+                        document.getElementById("totalUsuarios").textContent =
+                            dados.totalUsuarios["COUNT(*)"];
+
+                        document.getElementById("usuarioAtivo").textContent =
+                            dados.usuarioAtivo["usuario"];
+
+                        document.getElementById("totalQuizGeral").textContent =
+                            dados.totalQuizAdmin["totalQuizGeral"];
+
+
+                        var personagens = dados.personagens.map(function (item) {
+                            return item['personagem'];
+                        });
+
+                        var quantidades = dados.personagens.map(function (item) {
+                            return Number(item['quantidade']);
+                        });
+
+
+                        graficoPersonagem = new Chart(
+                            document.getElementById('chartCharacter'),
+                            {
+                                type: 'bar',
+                                data: {
+                                    labels: personagens,
+                                    datasets: [{
+                                        label: 'Quantidade',
+                                        data: quantidades,
+                                        backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                                        borderColor: 'rgba(245, 197, 66, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    animation: true,
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true,
+                                            min: 0
+                                        },
+
+                                        x: {
+                                            ticks: {
+                                                minRotation: 0,
+                                                maxRotation: 0,
+                                                font: {
+                                                    size: 10
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        );
+
+
+                        // GRÁFICO DE LINHA
+
+                        var datas = dados.taxaAtividade.map(function (item) {
+                            return item.data.split('T')[0].split('-').reverse().join('/');
+                        });
+
+                        var quantidadeTentativas = dados.taxaAtividade.map(function (item) {
+                            return Number(item['total_quizzes']);
+                        });
+
+                        graficoAtividade = new Chart(
+                            document.getElementById('chartActivity'),
+                            {
+                                type: 'line',
+                                data: {
+                                    labels: datas,
+                                    datasets: [{
+                                        label: 'Quantidade tentativas',
+                                        data: quantidadeTentativas,
+                                        backgroundColor: 'rgba(245, 197, 66, 0.5)',
+                                        borderColor: 'rgba(245, 197, 66, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    animation: true,
+                                    scales:
+                                    {
+                                        y: {
+                                            beginAtZero: true,
+                                            min: 0,
+                                        },
+
+                                        x: {
+                                            ticks: {
+                                                minRotation: 0,
+                                                maxRotation: 0,
+                                                font: {
+                                                    size: 10
+                                                }
+                                                
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        );
+
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    });
+
+            } else {
+                console.log('Usuário não está logado');
+            }
+        } catch (e) {
+            console.error('Erro ao buscar dados', e);
+        }
+    }
+
+
+
+</script>
+
+</html>

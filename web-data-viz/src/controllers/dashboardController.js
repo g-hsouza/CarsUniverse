@@ -66,7 +66,41 @@ function buscarHistorico(req, res) {
     }
 }
 
+function buscarDadosDashboardAdmin(req, res) {
+
+        Promise.all ([
+            dashboardModel.buscarTotalUsuarios(),
+            dashboardModel.buscarUsuarioAtivo(),
+            dashboardModel.buscarTotalQuizAdmin(),
+            dashboardModel.buscarPersonagens(),
+            dashboardModel.buscarTaxaAtividade(),
+        ])
+
+            .then(
+                function (resultados) {
+                    res.status(200).json({
+                        totalUsuarios: resultados[0][0],
+                        usuarioAtivo: resultados[1][0],
+                        totalQuizAdmin: resultados[2][0],
+                        personagens: resultados[3],
+                        taxaAtividade: resultados[4]
+                    });
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao obter os dados! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+
 module.exports = {
     buscarDadosDashboard,
-    buscarHistorico
+    buscarHistorico,
+    buscarDadosDashboardAdmin
 }

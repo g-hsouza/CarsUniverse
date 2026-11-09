@@ -11,5 +11,9 @@ router.get("/buscarHistorico", function (req, res) {
     dashboardController.buscarHistorico(req, res);
 })
 
+router.get("/buscarDadosDashboardAdmin", function (req, res) {
+    dashboardController.buscarDadosDashboardAdmin(req, res);
+})
+
 
 module.exports = router;

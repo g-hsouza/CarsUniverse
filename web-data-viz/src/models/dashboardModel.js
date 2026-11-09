@@ -103,6 +103,89 @@ function buscarHistoricoQuiz(id) {
     return database.executar(instrucaoSql);
 }
 
+function buscarTotalUsuarios() {
+    var instrucaoSql = `
+        SELECT COUNT(*) FROM usuario AS totalUsuarios;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUsuarioAtivo() {
+    var instrucaoSql = `
+        SELECT u.nome AS usuario
+            FROM usuario u
+            ORDER BY (
+                (SELECT COUNT(*)
+                FROM tentativa_conhecimento tc
+                WHERE u.id = tc.fk_usuario)
+                +
+                (SELECT COUNT(*)
+                FROM tentativa_personalidade tp
+                WHERE u.id = tp.fk_usuario)
+            ) DESC
+        LIMIT 1;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTotalQuizAdmin() {
+    var instrucaoSql = `
+        SELECT (
+            (SELECT COUNT(*) 
+            FROM tentativa_conhecimento) +
+            (SELECT COUNT(*)
+        FROM tentativa_personalidade)) AS totalQuizGeral;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarPersonagens() {
+    var instrucaoSql = `
+        SELECT p.nome AS personagem, COUNT(*) AS quantidade
+        FROM tentativa_personalidade tp
+        JOIN personagem p
+        ON tp.fk_personagem = p.id
+        GROUP BY p.nome
+        ORDER BY quantidade DESC
+        LIMIT 4;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTaxaAtividade() {
+    var instrucaoSql = `
+        SELECT 
+            DATE(data_realizacao) AS data,
+            COUNT(*) AS total_quizzes
+        FROM (
+            SELECT data_realizacao
+            FROM tentativa_conhecimento
+            WHERE DATEDIFF(CURDATE(), data_realizacao) <= 6
+
+            UNION ALL
+
+            SELECT data_realizacao
+            FROM tentativa_personalidade
+            WHERE DATEDIFF(CURDATE(), data_realizacao) <= 6
+        ) AS tentativas
+        GROUP BY DATE(data_realizacao)
+        ORDER BY data;
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
 
 module.exports = {
     buscarTotalQuiz,
@@ -110,5 +193,10 @@ module.exports = {
     buscarUltimoPersonagem,
     buscarTaxaAcertoCategoria,
     buscarEvolucaoTaxaAcerto,
-    buscarHistoricoQuiz
+    buscarHistoricoQuiz,
+    buscarTotalUsuarios,
+    buscarUsuarioAtivo,
+    buscarTotalQuizAdmin,
+    buscarPersonagens,
+    buscarTaxaAtividade
 };

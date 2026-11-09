@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarsUniverse | Histórico Quiz</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="buscarUsuarios()">
+
+    <div class="janela">
+
+        <div class="header-left dash-header">
+
+            <img src="../assets/imgs/logo_carsUniverse.png" alt="" width="150px" height="100px">
+
+            <div class="botoes-nav">
+                <a href="dashboardAdmin.html">
+                    <div class="btn-nav-white">
+                        <h3>Dashboard</h3>
+                    </div>
+                </a>
+
+                <a href="quiz.html">
+                    <div class="btn-nav">
+                        <h3>Usuarios</h3>
+                    </div>
+                </a>
+            </div>
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+
+            <div class="topo-dash">
+                <div class="titulo-dash">
+                    <h1>USUÁRIOS DA PLATAFORMA</h1>
+                    <p>Faça o gerenciamento dos usuários</p>
+                </div>
+            </div>
+
+            <div id="msg-historico" style="display: none;">
+                <h1>Nenhum usuário cadastrado!</h1>
+            </div>
+
+            <div class="container-tabela" id="tabela" style="display: flex;">
+                <table class="tabela-historico">
+                    <thead>
+                        <tr>
+                            <th>USUÁRIO</th>
+                            <th>E-MAIL</th>
+                            <th>DATA CADASTRO</th>
+                            <th>STATUS</th>
+                            <th>ATIVAR / DESATIVAR</th>
+                        </tr>
+                    </thead>
+                    <tbody id="listaHistorico">
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    function buscarHistorico() {
+        try {
+            var idUsuario = sessionStorage.ID_USUARIO;
+            if (idUsuario) {
+                fetch(`/dashboard/buscarHistorico?id=${idUsuario}`, {
+                    method: 'GET'
+                }).then(function (res) {
+                    if (res.ok) {
+                        console.log('Dados obtidos com sucesso');
+                        return res.json();
+                    } throw new Error('Erro ao buscar dados');
+                })
+
+                    .then(function (dados) {
+
+                        var listaHistorico = document.getElementById("listaHistorico");
+                        listaHistorico.innerHTML = "";
+
+                        if (dados.length == 0) {
+                            document.getElementById("msg-historico").style.display = "flex";
+                            document.getElementById("tabela").style.display = "none";
+                        } else {
+                            document.getElementById("msg-historico").style.display = "none";
+                            document.getElementById("tabela").style.display = "flex";
+                        }
+
+                        for (var i = 0; i < dados.length; i++) {
+
+                            listaHistorico.innerHTML += `
+                                <tr>
+                                    <td>${dados[i]["Tipo de Quiz"]}</td>
+                                    <td>${dados[i]["Resultado"]}</td>
+                                    <td>${dados[i]["Data"]}</td>
+                                </tr>
+                            `;
+                        }
+
+                    }).catch(function (erro) {
+                        console.log(erro);
+                    });
+
+            } else {
+                console.log('Usuário não está logado');
+            }
+        } catch (e) {
+            console.error('Erro ao buscar dados', e);
+        }
+    }
+</script>
