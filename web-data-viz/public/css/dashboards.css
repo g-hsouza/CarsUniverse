@@ -321,6 +321,7 @@ h1, h2, h3 {
   border-radius: 12px;
   font-size: 20px;
   overflow: hidden;
+  margin-bottom: 50px;
 }
 
 .tabela-historico th, td {
