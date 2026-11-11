@@ -21,4 +21,12 @@ router.put("/alterarSenha", function (req, res) {
     usuarioController.alterarSenha(req, res);
 });
 
+router.put("/ativarUsuario", function (req, res) {
+    usuarioController.ativarUsuario(req, res);
+});
+
+router.put("/desativarUsuario", function (req, res) {
+    usuarioController.desativarUsuario(req, res);
+});
+
 module.exports = router;

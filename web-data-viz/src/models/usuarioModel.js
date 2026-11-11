@@ -58,10 +58,29 @@ function alterarSenha(id, novaSenha) {
     return database.executar(instrucaoSql);
 }
 
+function ativarUsuario(id) {
+    var instrucaoSql = `
+        UPDATE usuario SET ativo = 1 WHERE id = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+function desativarUsuario(id) {
+    var instrucaoSql = `
+        UPDATE usuario SET ativo = 0 WHERE id = ${id};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizar,
     alterarSenha,
-    buscarSenha
+    buscarSenha,
+    ativarUsuario,
+    desativarUsuario
 };

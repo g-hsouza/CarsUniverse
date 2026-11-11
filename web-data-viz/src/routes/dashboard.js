@@ -15,5 +15,9 @@ router.get("/buscarDadosDashboardAdmin", function (req, res) {
     dashboardController.buscarDadosDashboardAdmin(req, res);
 })
 
+router.get("/buscarUsuarios", function (req, res) {
+    dashboardController.buscarUsuarios(req, res);
+})
+
 
 module.exports = router;

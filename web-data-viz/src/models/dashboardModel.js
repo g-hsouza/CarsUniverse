@@ -184,6 +184,24 @@ function buscarTaxaAtividade() {
     return database.executar(instrucaoSql);
 }
 
+function buscarUsuarios() {
+    var instrucaoSql = `
+        SELECT id,
+            nome,
+            email,
+            DATE_FORMAT(data_cadastro, '%d/%m/%Y') AS data_cadastro,
+            CASE 
+                WHEN ativo = 1 THEN 'Ativo'
+                ELSE 'Inativo'
+            END AS status
+        FROM usuario;
+            
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 
 
@@ -198,5 +216,6 @@ module.exports = {
     buscarUsuarioAtivo,
     buscarTotalQuizAdmin,
     buscarPersonagens,
-    buscarTaxaAtividade
+    buscarTaxaAtividade,
+    buscarUsuarios
 };

@@ -78,15 +78,30 @@
                             <th>ATIVAR / DESATIVAR</th>
                         </tr>
                     </thead>
-                    <tbody id="listaHistorico">
+                    <tbody id="listaUsuario">
 
                     </tbody>
                 </table>
             </div>
 
 
+        </div>
 
 
+    </div>
+
+    <div id="modalConfirmacao" class="modal" style="display: none;">
+
+        <div class="card-confirmacao">
+
+            <span class="fechar" onclick="fecharModalConfirmacao()">X</span>
+
+            <h3>Confirmar ativação/desativação</h3>
+
+            <div class="div-confirmacao">
+                <button onclick="confirmarAlteracao()">Sim</button>
+                <button onclick="fecharModalConfirmacao()">Não</button>
+            </div>
 
         </div>
 
@@ -98,12 +113,14 @@
 </html>
 
 <script>
+    var idSelecionado;
+    var acao;
 
-    function buscarHistorico() {
+    function buscarUsuarios() {
         try {
             var idUsuario = sessionStorage.ID_USUARIO;
             if (idUsuario) {
-                fetch(`/dashboard/buscarHistorico?id=${idUsuario}`, {
+                fetch(`/dashboard/buscarUsuarios`, {
                     method: 'GET'
                 }).then(function (res) {
                     if (res.ok) {
@@ -114,8 +131,8 @@
 
                     .then(function (dados) {
 
-                        var listaHistorico = document.getElementById("listaHistorico");
-                        listaHistorico.innerHTML = "";
+                        var listaUsuario = document.getElementById("listaUsuario");
+                        listaUsuario.innerHTML = "";
 
                         if (dados.length == 0) {
                             document.getElementById("msg-historico").style.display = "flex";
@@ -127,13 +144,33 @@
 
                         for (var i = 0; i < dados.length; i++) {
 
-                            listaHistorico.innerHTML += `
+                            if (dados[i]['status'] == 'Ativo') {
+
+                                listaUsuario.innerHTML += `
                                 <tr>
-                                    <td>${dados[i]["Tipo de Quiz"]}</td>
-                                    <td>${dados[i]["Resultado"]}</td>
-                                    <td>${dados[i]["Data"]}</td>
+                                    <td>${dados[i]['nome']}</td>
+                                    <td>${dados[i]['email']}</td>
+                                    <td>${dados[i]['data_cadastro']}</td>
+                                    <td><span style="color: #2E9B68">${dados[i]['status']}</span></td>
+                                    <td><button onclick="desativar(${dados[i]['id']})" class="btn-alterar">Desativar</button></td>
                                 </tr>
                             `;
+
+                            } else {
+
+                                listaUsuario.innerHTML += `
+                                <tr>
+                                    <td>${dados[i]['nome']}</td>
+                                    <td>${dados[i]['email']}</td>
+                                    <td>${dados[i]['data_cadastro']}</td>
+                                    <td><span style="color: #E82127">${dados[i]['status']}</span></td>
+                                    <td><button onclick="ativar(${dados[i]['id']})" class="btn-alterar">Ativar</button></td>
+                                </tr>
+                            `;
+
+                            }
+
+
                         }
 
                     }).catch(function (erro) {
@@ -146,5 +183,49 @@
         } catch (e) {
             console.error('Erro ao buscar dados', e);
         }
+    }
+
+    function desativar(id) {
+        idSelecionado = id;
+        acao = 'desativar';
+        abrirModalConfirmacao();
+    }
+
+    function ativar(id) {
+        idSelecionado = id;
+        acao = 'ativar';
+        abrirModalConfirmacao();
+    }
+
+    function abrirModalConfirmacao() {
+        document.getElementById('modalConfirmacao').style.display = 'flex';
+    }
+
+    function fecharModalConfirmacao() {
+        document.getElementById('modalConfirmacao').style.display = 'none';
+    }
+
+    function confirmarAlteracao() {
+        fetch(`/usuarios/${acao}Usuario`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                idSelecionado: idSelecionado
+            }),
+        })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    alert("Alteração feita com sucesso!");
+                    fecharModalConfirmacao();
+                    buscarUsuarios(); // recarrega a tabela
+                } else {
+                    throw "Houve um erro ao alterar o usuário!";
+                }
+            })
+            .catch(function (erro) {
+                console.log(`#ERRO: ${erro}`);
+            });
     }
 </script>

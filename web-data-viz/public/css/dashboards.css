@@ -416,7 +416,7 @@ tbody tr:hover {
 }
 
 .modal {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 1000;
 
@@ -430,6 +430,11 @@ tbody tr:hover {
 
     justify-content: center;
     align-items: center;
+}
+
+.div-confirmacao {
+  display: flex;
+  justify-content: space-between;
 }
 
 .card-senha {
@@ -474,6 +479,75 @@ tbody tr:hover {
 }
 
 .card-senha p {
+    margin: 0;
+    font-size: 10px;
+    font-family: 'Inter';
+    color: #8B929B;
+}
+
+.fechar {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.card-confirmacao {
+    position: relative;
+
+    width: 90%;
+    max-width: 400px;
+
+    background-color: black;
+    border: 1px solid #444;
+    border-radius: 10px;
+
+    padding: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.card-confirmacao h3 {
+    color: white;
+    font-family: 'Inter';
+    margin: 25px 0 10px 0;
+}
+
+
+.card-confirmacao button {
+    padding: 12px;
+    background-color: #E82127;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Inter';
+    width: 45%;
+}
+
+.btn-alterar{
+  background-color: black;
+  color: white;
+  border: solid 1px #E82127;
+  border-radius: 5px;
+  padding: 10px;
+  align-self: center;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%;
+  font-family: 'Inter';
+}
+
+.btn-alterar:hover {
+  background-color: #E82127;
+}
+
+.card-confirmacao p {
     margin: 0;
     font-size: 10px;
     font-family: 'Inter';

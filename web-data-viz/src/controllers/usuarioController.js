@@ -165,9 +165,65 @@ function alterarSenha(req, res) {
     }
 }
 
+function desativarUsuario(req, res) {
+    var id = req.body.idSelecionado;
+
+    if (id == undefined){
+        res.status(400).send("Seu id está undefined!");
+    } else {
+
+        usuarioModel.desativarUsuario(id)
+            .then(
+                function (resultado) {
+                    res.json({
+                        resultado: resultado,
+                    });
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao tentar desativar! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
+function ativarUsuario(req, res) {
+    var id = req.body.idSelecionado;
+
+    if (id == undefined){
+        res.status(400).send("Seu id está undefined!");
+    } else {
+
+        usuarioModel.ativarUsuario(id)
+            .then(
+                function (resultado) {
+                    res.json({
+                        resultado: resultado,
+                    });
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao tentar ativar! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     autenticar,
     cadastrar,
     atualizar,
-    alterarSenha
+    alterarSenha,
+    desativarUsuario,
+    ativarUsuario
 }
