@@ -107,6 +107,67 @@ a {
     margin: 0;
 }
 
+.alerta_erro {
+  position: fixed;
+  top: 75px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  width: 90%;
+  max-width: 500px;
+}
+
+.card_erro {
+  display: none; 
+  background-color: #153b22; 
+  color: #fff;
+  padding: 14px 24px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border: 2px solid transparent; 
+}
+
+.card-loading{
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    z-index: 1000;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.card-loading h4 {
+    font-family: 'Bebas Neue';
+    font-weight: normal;
+    margin: 15px;
+    font-size: 35px;
+}
+
+#loading {
+    width: 45px;
+    height: 45px;
+    border: 10px solid;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: loading .7s linear infinite;
+}
+
+@keyframes loading {
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
 
