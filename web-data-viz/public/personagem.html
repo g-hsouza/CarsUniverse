@@ -1,20 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cars Universe</title><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Cars Universe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="../assets/imgs/logo_carsUniverse.png">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+    </script>
 </head>
+
 <body>
     <header>
-        <a href="index.html"><img src="assets/imgs/logo_carsUniverse.png" alt="" height="80px" width="110px" class="img-logo"></a>
+        <a href="index.html"><img src="assets/imgs/logo_carsUniverse.png" alt="" height="80px" width="110px"
+                class="img-logo"></a>
 
         <nav>
             <a href="index.html">Início</a>
@@ -31,7 +41,9 @@
 
     <section class="detalhamento-personagem">
         <div class="img-personagem">
-            <img src="assets/imgs/personagens/Mcqueen.png" alt="">
+            <model-viewer src="" alt="" camera-controls
+                auto-rotate style="width: 750px; height: 750px;">
+            </model-viewer>
         </div>
 
         <div class="descricao-personagem">
@@ -59,7 +71,7 @@
 
         <div class="footer-icones">
             <a href="https://www.instagram.com/gustsouuza/">
-                <img src="assets/imgs/instagram.png" alt="" width="80px" height="80px" >
+                <img src="assets/imgs/instagram.png" alt="" width="80px" height="80px">
             </a>
             <a href="https://www.linkedin.com/in/gustavohsouuza/">
                 <img src="assets/imgs/linkedin.png" alt="" width="80px" height="80px">
@@ -76,61 +88,61 @@
 
     <script src="js/personagens.js"></script>
     <script>
-    // Preenche a página com os dados do personagem selecionado via query string
-    (function() {
-        const params = new URLSearchParams(window.location.search);
-        const rawId = params.get('personagem') || 'mcqueen';
+        // Preenche a página com os dados do personagem selecionado via query string
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const rawId = params.get('personagem') || 'mcqueen';
 
-        if (typeof personagens === 'undefined') {
-            console.warn('Objeto personagens não encontrado');
-            return;
-        }
+            if (typeof personagens === 'undefined') {
+                console.warn('Objeto personagens não encontrado');
+                return;
+            }
 
-        // Tenta encontrar a chave correspondendo ignorando maiúsculas/minúsculas
-        const keys = Object.keys(personagens);
-        const matchKey = keys.find(k => k.toLowerCase() === rawId.toLowerCase())
-            // fallback: compara com o nome legível
-            || keys.find(k => (personagens[k].nome || '').toLowerCase() === rawId.toLowerCase());
+            // Tenta encontrar a chave correspondendo ignorando maiúsculas/minúsculas
+            const keys = Object.keys(personagens);
+            const matchKey = keys.find(k => k.toLowerCase() === rawId.toLowerCase())
+                // fallback: compara com o nome legível
+                || keys.find(k => (personagens[k].nome || '').toLowerCase() === rawId.toLowerCase());
 
-        if (!matchKey) {
-            console.warn('Personagem não encontrado:', rawId);
-            return;
-        }
+            if (!matchKey) {
+                console.warn('Personagem não encontrado:', rawId);
+                return;
+            }
 
-        const p = personagens[matchKey];
+            const p = personagens[matchKey];
 
-        // Ajuste do caminho da imagem: usa a pasta ../imgs/personangens/
-        const imgEl = document.querySelector('.img-personagem img');
-        if (imgEl) {
-            const filename = (p.imagem || '').split('/').pop();
-            imgEl.src = filename ? `assets/imgs/personagens/${filename}` : p.imagem;
-            imgEl.alt = p.nome || '';
-        }
+            // Ajuste do caminho da imagem: usa a pasta ../imgs/personangens/
+            const viewer = document.querySelector('model-viewer');
+            if (viewer && p.modelo3d) {
+                viewer.src = p.modelo3d;
+                viewer.alt = `Modelo 3D de ${p.nome}`;
+            }
 
-        const title = document.querySelector('.descricao-personagem h1');
-        if (title) title.textContent = p.nome || '';
+            const title = document.querySelector('.descricao-personagem h1');
+            if (title) title.textContent = p.nome || '';
 
-        // Preenche os parágrafos na ordem: descrição, modelo, filme, personalidade
-        const detalhes = document.querySelectorAll('.detalhes-personagem p');
-        if (detalhes && detalhes.length >= 4) {
-            detalhes[0].textContent = p.descricao || '';
-            detalhes[1].textContent = p.modelo || '';
-            detalhes[2].textContent = p.filme || '';
-            detalhes[3].textContent = p.personalidade || '';
-        } else {
-            // fallback: procura os h2 e usa o nextElementSibling
-            document.querySelectorAll('.detalhes-personagem h2').forEach(h => {
-                const key = h.textContent.trim().toLowerCase();
-                const target = h.nextElementSibling;
-                if (!target) return;
-                if (key.startsWith('descr')) target.textContent = p.descricao || '';
-                else if (key.startsWith('modelo')) target.textContent = p.modelo || '';
-                else if (key.includes('apari')) target.textContent = p.filme || '';
-                else if (key.includes('personal')) target.textContent = p.personalidade || '';
-            });
-        }
-    })();
+            // Preenche os parágrafos na ordem: descrição, modelo, filme, personalidade
+            const detalhes = document.querySelectorAll('.detalhes-personagem p');
+            if (detalhes && detalhes.length >= 4) {
+                detalhes[0].textContent = p.descricao || '';
+                detalhes[1].textContent = p.modelo || '';
+                detalhes[2].textContent = p.filme || '';
+                detalhes[3].textContent = p.personalidade || '';
+            } else {
+                // fallback: procura os h2 e usa o nextElementSibling
+                document.querySelectorAll('.detalhes-personagem h2').forEach(h => {
+                    const key = h.textContent.trim().toLowerCase();
+                    const target = h.nextElementSibling;
+                    if (!target) return;
+                    if (key.startsWith('descr')) target.textContent = p.descricao || '';
+                    else if (key.startsWith('modelo')) target.textContent = p.modelo || '';
+                    else if (key.includes('apari')) target.textContent = p.filme || '';
+                    else if (key.includes('personal')) target.textContent = p.personalidade || '';
+                });
+            }
+        })();
     </script>
 
 </body>
+
 </html>
