@@ -10,6 +10,7 @@ function validarSessao() {
     var ipt_email = document.getElementById("ipt_email");
 
     console.log(sessionStorage.FOTO_PERFIL);
+    console.log(sessionStorage.NOME_USUARIO)
 
     if (fotoPerfil && fotoPerfil != 'null') {
         imagem.src = `/uploads/${fotoPerfil}`;

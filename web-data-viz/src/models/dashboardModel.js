@@ -105,7 +105,8 @@ function buscarHistoricoQuiz(id) {
 
 function buscarTotalUsuarios() {
     var instrucaoSql = `
-        SELECT COUNT(*) FROM usuario AS totalUsuarios;
+        SELECT COUNT(*) FROM usuario AS totalUsuarios
+        WHERE nome NOT LIKE ('admin');
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -116,6 +117,7 @@ function buscarUsuarioAtivo() {
     var instrucaoSql = `
         SELECT u.nome AS usuario
             FROM usuario u
+            WHERE nome NOT LIKE ('admin')
             ORDER BY (
                 (SELECT COUNT(*)
                 FROM tentativa_conhecimento tc
@@ -194,7 +196,8 @@ function buscarUsuarios() {
                 WHEN ativo = 1 THEN 'Ativo'
                 ELSE 'Inativo'
             END AS status
-        FROM usuario;
+        FROM usuario
+        WHERE nome NOT LIKE ('admin');
             
     `;
 
