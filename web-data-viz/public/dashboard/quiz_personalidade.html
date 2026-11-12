@@ -101,22 +101,15 @@
         } from '../js/bancoQuestoes.js';
 
         // variáveis globais    
-        let questoesDoQuiz = [];
+        let questoesDoQuiz = listaDeQuestoesPersonalidade;
 
         let numeroDaQuestaoAtual = 0
         let pontuacaoFinal = 0
         let tentativaIncorreta = 0
         let certas = 0
         let erradas = 0
-        let quantidadeDeQuestoes = 10;
+        let quantidadeDeQuestoes = listaDeQuestoesPersonalidade.length;
         // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
-
-
-        function sortearQuestoes() {
-            const questoesEmbaralhadas = [...listaDeQuestoesPersonalidade];
-            questoesEmbaralhadas.sort(() => Math.random() - 0.5);
-            questoesDoQuiz = questoesEmbaralhadas.slice(0, 10);
-        }
 
         function onloadEsconder() {
             document.getElementById('pontuacao').style.display = "none"
@@ -125,8 +118,6 @@
         }
 
         function iniciarQuiz() {
-            sortearQuestoes();
-            console.log("Questões sorteadas:", questoesDoQuiz);
             console.log("Primeira questão:", questoesDoQuiz[0]);
 
             numeroDaQuestaoAtual = 0;
