@@ -89,7 +89,7 @@
     var i = 0;
 
     var nomeValido = nome.length > 1;
-    var emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0;
+    var emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0 && email.endsWith(".com");
     var senhaValida = senha.length >= 8 && senha != senhaUpper && senha != senhaLower && temEspecial;
     var confirmacaoSenhaValida = confirmacaoSenha == senha;
 

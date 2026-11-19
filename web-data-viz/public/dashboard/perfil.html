@@ -198,58 +198,71 @@
     function salvarAlteracoes() {
         var nomeAtualizado = ipt_nome.value.trim()
         var emailAtualizado = ipt_email.value.trim();
+        var temArroba = emailAtualizado.includes('@');
+        var temPonto = emailAtualizado.includes('.');
+        var indexArroba = emailAtualizado.indexOf('@');
+        var indexPontoCom = emailAtualizado.indexOf('.com');
 
-        try {
-            var idUsuario = sessionStorage.ID_USUARIO;
+        var emailValido = temArroba && temPonto && indexPontoCom > indexArroba + 1 && indexArroba > 0 && emailAtualizado.endsWith(".com");
 
-            if (idUsuario) {
+        if (nomeAtualizado <= 1) {
+            alert("O nome é inválido!")
+        } else if (!emailValido){
+            alert("O e-mail é inválido!")
+        } else {
 
-                var formulario = new FormData();
+            try {
+                var idUsuario = sessionStorage.ID_USUARIO;
 
-                formulario.append('id', idUsuario);
-                formulario.append('nomeAtualizado', nomeAtualizado);
-                formulario.append('emailAtualizado', emailAtualizado);
+                if (idUsuario) {
 
-                var foto = document.getElementById('input-foto').files[0];
+                    var formulario = new FormData();
 
-                if (foto) {
-                    formulario.append('fotoPerfil', foto);
-                }
+                    formulario.append('id', idUsuario);
+                    formulario.append('nomeAtualizado', nomeAtualizado);
+                    formulario.append('emailAtualizado', emailAtualizado);
 
-                fetch('/usuarios/atualizar', {
-                    method: 'PUT',
-                    body: formulario
-                }).then(function (res) {
-                    if (res.ok) {
+                    var foto = document.getElementById('input-foto').files[0];
 
-                        sessionStorage.NOME_USUARIO = nomeAtualizado;
-                        sessionStorage.EMAIL_USUARIO = emailAtualizado;
-
-                        res.json().then(function (dados) {
-
-                            if (dados.fotoPerfil) {
-                                sessionStorage.FOTO_PERFIL = dados.fotoPerfil;
-
-                                var imagem = document.getElementById('foto-perfil');
-
-                                imagem.src = `/uploads/${dados.fotoPerfil}?t=${new Date().getTime()}`;
-                            }
-
-                            console.log('Dados atualizados com sucesso');
-                            alert("Dados atualizados com sucesso!");
-
-                        });
-
-                    } else {
-                        res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
+                    if (foto) {
+                        formulario.append('fotoPerfil', foto);
                     }
-                }).catch(function (err) { console.error('Erro ao atualizar dados:', err); });
-            } else {
-                console.log('Usuário não está logado');
+
+                    fetch('/usuarios/atualizar', {
+                        method: 'PUT',
+                        body: formulario
+                    }).then(function (res) {
+                        if (res.ok) {
+
+                            sessionStorage.NOME_USUARIO = nomeAtualizado;
+                            sessionStorage.EMAIL_USUARIO = emailAtualizado;
+
+                            res.json().then(function (dados) {
+
+                                if (dados.fotoPerfil) {
+                                    sessionStorage.FOTO_PERFIL = dados.fotoPerfil;
+
+                                    var imagem = document.getElementById('foto-perfil');
+
+                                    imagem.src = `/uploads/${dados.fotoPerfil}?t=${new Date().getTime()}`;
+                                }
+
+                                console.log('Dados atualizados com sucesso');
+                                alert("Dados atualizados com sucesso!");
+
+                            });
+
+                        } else {
+                            res.text().then(function (txt) { console.error('Erro ao atualizar dados:', txt); });
+                        }
+                    }).catch(function (err) { console.error('Erro ao atualizar dados:', err); });
+                } else {
+                    console.log('Usuário não está logado');
+                }
+            } catch (e) {
+                console.error('Erro ao tentar atualizar os dados', e);
             }
-        } catch (e) {
-            console.error('Erro ao tentar atualizar os dados', e);
-        }
+            }
     }
 
     function alterarSenha() {
