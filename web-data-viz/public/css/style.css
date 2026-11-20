@@ -200,18 +200,19 @@ nav a:hover {
 }
 
 .personagem {
-    flex: 0 0 250px;
-    ;
+    flex: 0 0 250px;;
     height: 250px;
     border: solid 1px #8B929B;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 15px;
     justify-content: space-evenly;
     align-items: center;
     color: #8B929B;
     cursor: pointer;
     flex-shrink: 0;
+    background-color: #1C1D21;
+    border-radius: 10px;
 }
 
 .btn-voltar {
@@ -432,6 +433,7 @@ footer p {
     border-radius: 5px;
     width: 600px;
     padding: 25px;
+    background-color: #1C1D21;
 }
 
 .descricao-personagem {
