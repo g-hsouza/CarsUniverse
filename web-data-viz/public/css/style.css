@@ -19,6 +19,10 @@ h5 {
     font-style: normal;
 }
 
+h6 {
+    font-family: 'Inter';
+}
+
 a {
     text-decoration: none;
 }
@@ -96,9 +100,18 @@ nav a:hover {
 
 .h1-universo {
     text-align: start;
-    font-size: 60px;
-    margin-bottom: 20px;
+    font-size: 65px;
+    margin: 0;
     color: #F2F2F2;
+}
+
+.h6-titulos {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'Inter';
+    color: #F5C542;
+    letter-spacing: 2px;
 }
 
 .universo img {
@@ -107,8 +120,9 @@ nav a:hover {
 
 .conteudo-universo {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    align-items: flex-start;
 }
 
 .sobre-universo {
@@ -125,8 +139,8 @@ nav a:hover {
 
 .texto-universo {
     color: #8B929B;
-    font-size: 25px;
-    width: 570px;
+    font-size: 20px;
+    width: 670px;
     line-height: 1.3;
     display: flex;
     gap: 50px;
@@ -139,11 +153,9 @@ nav a:hover {
 }
 
 .titulo-trilogia {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
     gap: 20px;
     margin-right: 40px;
+    margin-left: 100px;
     margin-top: 100px;
 }
 
@@ -171,8 +183,9 @@ nav a:hover {
 .titulo-personagens {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-bottom: 100px;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    margin-left: 100px;
 }
 
 .h1-personagens {
@@ -269,11 +282,15 @@ nav a:hover {
 }
 
 .titulo-locais {
-    margin: 100px 40px 40px 40px;
+    margin: 100px 40px 40px 100px;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: center;
-    gap: 20px
+    align-items: flex-start;
+}
+
+.titulo-locais h1 {
+    margin: 0;
 }
 
 .local {
@@ -304,8 +321,15 @@ nav a:hover {
 .titulo-sobre {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 100px 0 100px 0;
+    align-self: flex-start;
+    margin: 0px 0 5px 0;
+}
+
+.sobre {
+    display: flex;
+    justify-content: flex-start;
+    gap: 100px;
+    margin: 120px 100px 50px 100px;
 }
 
 .linhas-sobre {
@@ -326,18 +350,17 @@ nav a:hover {
 
 .conteudo-sobre {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 150px;
     margin-bottom: 100px;
 }
 
 .texto-sobre {
-    width: 400px;
+    width: 100%;
 }
 
 .p-sobre {
-    font-size: 22px;
+    font-size: 20px;
     color: #8B929B;
 }
 
@@ -348,7 +371,25 @@ nav a:hover {
 }
 
 .img-sobre {
-    border-radius: 50%;
+    border-radius: 20px;
+}
+
+.btn-historia{
+    align-self: flex-start;
+    background-color: #E82127;
+    border: solid 1px #E82127;
+    color: white;
+    font-family: 'Inter';
+    padding: 12px 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.btn-historia:hover {
+    background-color: transparent;
+    transition: 0.3s;
 }
 
 footer {
