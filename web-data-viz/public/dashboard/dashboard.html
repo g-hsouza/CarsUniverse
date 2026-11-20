@@ -106,7 +106,7 @@
 
                 <div class="div-graphs">
                     <div class="graph">
-                        <h5>Desempenho por Categoria</h5>
+                        <h5>Desempenho por Categoria</h5><br>
                         <div>
                             <canvas id="chartCategorie"></canvas>
                         </div>
@@ -193,10 +193,19 @@
                                 data: {
                                     labels: categorias,
                                     datasets: [{
-                                        label: 'Taxa de Acerto (%)',
                                         data: taxas,
-                                        backgroundColor: 'rgba(245, 197, 66, 0.5)',
-                                        borderColor: 'rgba(245, 197, 66, 1)',
+                                        backgroundColor: [
+                                            'rgba(232, 33, 39, 0.5)',
+                                            'rgba(0, 119, 182, 0.5)',
+                                            'rgba(147, 102, 57, 0.5)',
+                                            'rgba(245, 197, 66, 0.5)',
+                                        ],
+                                        borderColor: [
+                                            'rgba(232, 33, 39, 1)',
+                                            'rgba(0, 119, 182, 1)',
+                                            'rgba(147, 102, 57, 1)',
+                                            'rgba(245, 197, 66, 1)',
+                                        ],
                                         borderWidth: 1
                                     }]
                                 },
@@ -214,7 +223,8 @@
                                                 }
                                             }
                                         }
-                                    }
+                                    },
+                                    plugins: { legend: { display: false } }
                                 }
                             }
                         );
@@ -246,7 +256,7 @@
                                 },
                                 options: {
                                     animation: true,
-                                    scales: 
+                                    scales:
                                     {
                                         y: {
                                             beginAtZero: true,

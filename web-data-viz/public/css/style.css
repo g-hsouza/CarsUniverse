@@ -215,6 +215,10 @@ nav a:hover {
     border-radius: 10px;
 }
 
+.card-loading {
+    font-family: 'Bebas Neue';
+}
+
 .btn-voltar {
     flex: 0 0 30px;
     height: 50px;
